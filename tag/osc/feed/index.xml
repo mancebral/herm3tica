@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>OSC &#8211; herm3TICa</title>
+	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
+	<link>./../../../index.html</link>
+	<description>Cámaras, sensores y telepresencia</description>
+	<lastBuildDate>Thu, 12 Feb 2015 19:06:27 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2</generator>
+	<item>
+		<title>Set up de proyecciones</title>
+		<link>./../../../set-up-de-proyecciones/index.html</link>
+					<comments>./../../../set-up-de-proyecciones/index.html#comments</comments>
+		
+		<dc:creator><![CDATA[man2hauser]]></dc:creator>
+		<pubDate>Wed, 14 Jan 2015 16:12:41 +0000</pubDate>
+				<category><![CDATA[Investigación]]></category>
+		<category><![CDATA[OpenFrameworks]]></category>
+		<category><![CDATA[Previos]]></category>
+		<category><![CDATA[setup]]></category>
+		<category><![CDATA[streaming]]></category>
+		<category><![CDATA[app]]></category>
+		<category><![CDATA[cámara obscura]]></category>
+		<category><![CDATA[OSC]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=853</guid>
+
+					<description><![CDATA[Diagrama de la escenografía que diseñamos para el Laboratorio herm3TICo de performance, durante nuestra primera residencia en Alg-a Lab. La idea es utilizar tres proyecciones con sus correspondientes aplicaciones de openFrameworks (en adelante of1, of2, of3) comunicadas via OSC, que ofrezcan tres puntos de vista distintos sobre lo que está sucediendo (el espejo, la interface [...]]]></description>
+										<content:encoded><![CDATA[<p style="text-align: justify;">Diagrama de la escenografía que diseñamos para el <strong>Laboratorio herm3TICo de performance</strong>, durante nuestra primera residencia en <strong>Alg-a Lab</strong>. La idea es utilizar tres proyecciones con sus correspondientes <strong>aplicaciones de openFrameworks</strong> (en adelante <strong>of1, of2, of3</strong>) comunicadas <strong>via OSC</strong>, que ofrezcan tres puntos de vista distintos sobre lo que está sucediendo (<strong>el espejo, la interface de análisisis y la narrativa</strong>, en este caso). A partir de aquí, hemos reorganizado la estructura del <a title="Github Alg-a" href="http://github.com/alg-a"><strong>repositorio Github</strong></a> del proyecto en función de esta estructura dejando sólo en la raíz una carpeta para cada una de las aplicaciones, una carpeta a mayores para todo lo que esté relacionado con el <strong>streaming</strong> y por último otra con el nombre de &#8220;exploración pruebas y juegos&#8221; como espacio más diáfano de experimentación. Esta sería la función y uso de cada una de las aplicaciones:</p>
+<p style="text-align: justify;"><span style="color: #ff33b1;"><strong>of1: espejo: </strong></span>que ofrece un reflejo directo del cuerpo del performer como feedback para la exploración. Aplicación que muestra la imagen de una webcam invertida de derecha a izquierda y permite las siguientes opciones:</p>
+<ul>
+<li style="text-align: justify;">Ajustes de contraste y tono para controlar la estética de la imagen</li>
+<li style="text-align: justify;">Gravar fragmentos como archivos de memoria para escenas posteriores</li>
+</ul>
+<p><a href="./../../../wp-content/uploads/2015/01/planta_proyecciones.png"><img decoding="async" class="alignnone wp-image-854 size-full" src="./../../../wp-content/uploads/2015/01/planta_proyecciones.png" alt="planta_proyecciones" width="1540" height="1110" srcset="./../../../wp-content/uploads/2015/01/planta_proyecciones.png 1540w, ./../../../wp-content/uploads/2015/01/planta_proyecciones-300x216.png 300w, ./../../../wp-content/uploads/2015/01/planta_proyecciones-1024x738.png 1024w" sizes="(max-width: 1540px) 100vw, 1540px" /></a></p>
+<p style="text-align: justify;"><span style="color: #ff33b1;"><strong>of2: interfaz: </strong></span>de análisis que ofrece una representación de lo que el ordenador ve como feedback para la exploración. Aplicación que analiza una fuente de video para producir información sobre el movimiento del performer que será enviada vía OSC o7y Json y que muestra una representación visual de dicho proceso de análisis.</p>
+<p style="text-align: justify;"><span style="color: #ff33b1;"><strong>of3: narrativa: </strong></span>resultante del análisis del movimiento del performer que muestra fragmentos de vídeo de distintas fuentes modificados en tiempo real. Aplicación que recibe datos procedentes del interfaz de análisis o del sistema de streaming para mezclar y transformar fuentes de vídeo e imagen como pequeños clips asociados a cada carta o fragmentos de sus imágenes.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../set-up-de-proyecciones/feed/index.html</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Activadores digitales (trigger areas)</title>
+		<link>./../../../activadores-digitales-trigger-areas/index.html</link>
+					<comments>./../../../activadores-digitales-trigger-areas/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[man2hauser]]></dc:creator>
+		<pubDate>Fri, 09 Jan 2015 11:37:11 +0000</pubDate>
+				<category><![CDATA[Alfombra de Sierpinski]]></category>
+		<category><![CDATA[interactivos]]></category>
+		<category><![CDATA[Investigación]]></category>
+		<category><![CDATA[OpenFrameworks]]></category>
+		<category><![CDATA[Previos]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[arduino]]></category>
+		<category><![CDATA[OSC]]></category>
+		<category><![CDATA[pduino]]></category>
+		<category><![CDATA[pure data]]></category>
+		<category><![CDATA[thresold]]></category>
+		<category><![CDATA[trigger areas]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=798</guid>
+
+					<description><![CDATA[Para activar diferentes mecanismos, podemos utilizar también el video, como imagen digital, que seleccionada y graduada según diferentes parámetros, nos permite, a través de protocolos y aplicaciones, activar o desactivar eléctricamente dispositivos. En este caso utilizamos en primer lugar openFrameworks para generar diferentes áreas de valor en la imagen (trigger areas) en este caso siguiendo [...]]]></description>
+										<content:encoded><![CDATA[<p>Para activar diferentes mecanismos, podemos utilizar también el video, como imagen digital, que seleccionada y graduada según diferentes parámetros, nos permite, a través de protocolos y aplicaciones, activar o desactivar eléctricamente dispositivos. En este caso utilizamos en primer lugar openFrameworks para generar diferentes áreas de valor en la imagen (<strong>trigger areas</strong>) en este caso siguiendo la geometría fractal de la <a title="Alfombra de Sierpinski" href="./../../../alfombra-de-sierpinski/index.html">Alfombra de Sierpinski</a>. Desarrollamos una aplicación específica que nos permite activar o desactivar las diferentes áreas generadas en esta geometría, la cual nos da además como resultado, el valor medio de todos los píxeles que pasan por ella. De este modo, si por ejemplo utilizamos una imagen en B/N y por tanto un sólo valor de RGB (más cómodo para activadores binarios 1/0) tendremos que determinar sólamente a partir de qué valor queremos que compute como positivo (+1) o como inactivo (=0). Este umbral es el trhesold que también podemos controlar y variar en tiempo real desde el controlador que desarrollamos en este framework.</p>
+<p><a href="./../../../wp-content/uploads/2015/01/activadoresdigitales.001.jpg"><img decoding="async" class="alignnone size-medium wp-image-799" src="./../../../wp-content/uploads/2015/01/activadoresdigitales.001-300x225.jpg" alt="activadoresdigitales.001" width="300" height="225" srcset="./../../../wp-content/uploads/2015/01/activadoresdigitales.001-300x225.jpg 300w, ./../../../wp-content/uploads/2015/01/activadoresdigitales.001.jpg 1024w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>A partir de ahí lo que nos falta es exportar esta información, lo hacemos de nuevo con OSC (ver <a title="Arquitectura (interna) de comunicación" href="./../../../arquitectura-interna-de-comunicacion/index.html"><strong>arquitectura interna de comunicación</strong></a> -aunque ya sin necesidad de pasar por un servidor de datos)  que es recibido por Pure Data (podría ser recibido por muchos otros sistemas) que a su vez, mediante la aplicación pduino contacta directamente con la placa IDE Arduino, que transforma esa información en un output eléctrico con el que activamos o controlamos los diferentes dispositivos que tengamos conectados al mismo, con la circuitería correspondiente que cada uno exija.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../activadores-digitales-trigger-areas/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Arquitectura (interna) de comunicación</title>
+		<link>./../../../arquitectura-interna-de-comunicacion/index.html</link>
+					<comments>./../../../arquitectura-interna-de-comunicacion/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[man2hauser]]></dc:creator>
+		<pubDate>Thu, 08 Jan 2015 19:27:36 +0000</pubDate>
+				<category><![CDATA[Previos]]></category>
+		<category><![CDATA[streaming]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[frameworks]]></category>
+		<category><![CDATA[json]]></category>
+		<category><![CDATA[mysql]]></category>
+		<category><![CDATA[OSC]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=791</guid>
+
+					<description><![CDATA[Además de la emisión por streaming, básicamente, de un output audiovisual, el proyecto cuenta con toda una arquitectura, digamos que interior, sobre la que realizará las comunicaciones, y que permitirá básicamente, el control remoto y la acción/reacción telepresencial. Al hacerlo de este modo, es decir, por separado, conseguimos independencia de las fuentes y los protocolos [...]]]></description>
+										<content:encoded><![CDATA[<p>Además de la emisión por streaming, básicamente, de un <em>output</em> audiovisual, el proyecto cuenta con toda una arquitectura, digamos que interior, sobre la que realizará las comunicaciones, y que permitirá básicamente, el control remoto y la acción/reacción telepresencial. Al hacerlo de este modo, es decir, por separado, conseguimos independencia de las fuentes y los protocolos y, por tanto, si hay fallos o deficiencias en la señal de streaming &#8220;general&#8221; del proyecto, eso no afectará a esta otra &#8220;arquitectura interna de comunicación&#8221; de la que ahora hablamos, que por otra parte, trabaja exclusivamente con datos, no con señal audiovisual, y por tanto, pesa mucho menos, además de ser una red de la que controlamos los puertos que necesita de manera directa y autónoma. Pasamos a especificar brevemente cómo funciona:</p>
+<p><a href="./../../../wp-content/uploads/2015/01/arquitecturadocumentacion.001.jpg"><img decoding="async" class="alignnone size-medium wp-image-797" src="./../../../wp-content/uploads/2015/01/arquitecturadocumentacion.001-300x225.jpg" alt="arquitecturadocumentacion.001" width="300" height="225" srcset="./../../../wp-content/uploads/2015/01/arquitecturadocumentacion.001-300x225.jpg 300w, ./../../../wp-content/uploads/2015/01/arquitecturadocumentacion.001.jpg 1024w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<ul>
+<li><strong>emisores:</strong> se comunican a través de <strong>json</strong> con una base de datos que habilitamos para el proyecto, devolviéndole esta base de datos un archivo donde se confirman los envíos y constantan posibles errores, etc.</li>
+<li><strong>servidor:</strong> donde está instalado un sencillo <strong>framework</strong> específico que desarrollamos para esta comunicación y es el que se encarga de recibir y enviar la información en<strong> json</strong> creando las correspondientes bases de datos en<strong> mysql</strong></li>
+<li><strong>receptores:</strong> a través del protocolo <strong>OSC</strong> los diferentes receptores pueden recibir y trabajar ya con los datos que llegan del servidor y utilizarlos para sus diferentes aplicaciones e interacciones (audio, video, actuadores). Este protocolo nos da mucha más precisión que el MIDI, p.e., y nos permite comunicar simultáneamente y sin cables toda la información, creando p.e. una red local.</li>
+</ul>
+<p>De este modo, independizamos la transimisión e interacción de datos y, por tanto, la acción remota y telepresencial, de la emisión audiovisual de streaming, que tiene mucha más carga para el servidor. Esto no quiere decir que las interacciones generadas a través de la red interna no tengan una repercusión audiovisual, ya que los receptores, a la vez que reciben información via OSC de esta arquitectura interna, utilizan esta información para a su vez activar y/o modificar la señal audiovisual que están enviando al streaming público (o &#8220;externo&#8221;) del proyecto, generándose así la telepresencia o acción remota.</p>
+<p><a title="Github alg-a" href="http://github.com/alg-a"><strong>Puedes consultar el código de esta aplicación en el github de Alg-a.</strong></a></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../arquitectura-interna-de-comunicacion/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

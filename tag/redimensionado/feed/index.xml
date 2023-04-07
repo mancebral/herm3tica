@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>redimensionado &#8211; herm3TICa</title>
+	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
+	<link>./../../../index.html</link>
+	<description>Cámaras, sensores y telepresencia</description>
+	<lastBuildDate>Sun, 08 Feb 2015 21:49:04 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2</generator>
+	<item>
+		<title>Dibujando la alfombra de Sierpinski (Shaders y FBO)</title>
+		<link>./../../../dibujando-la-alfombra-de-sierpinski-shaders-y-fbo/index.html</link>
+					<comments>./../../../dibujando-la-alfombra-de-sierpinski-shaders-y-fbo/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[Horacio]]></dc:creator>
+		<pubDate>Sun, 08 Feb 2015 21:46:51 +0000</pubDate>
+				<category><![CDATA[Alfombra de Sierpinski]]></category>
+		<category><![CDATA[Investigación]]></category>
+		<category><![CDATA[Máquina Abstracta]]></category>
+		<category><![CDATA[OpenFrameworks]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[3]]></category>
+		<category><![CDATA[alpha]]></category>
+		<category><![CDATA[fbo]]></category>
+		<category><![CDATA[fundamentos]]></category>
+		<category><![CDATA[interpolación]]></category>
+		<category><![CDATA[módulo]]></category>
+		<category><![CDATA[pixeles]]></category>
+		<category><![CDATA[posición]]></category>
+		<category><![CDATA[redimensionado]]></category>
+		<category><![CDATA[shaders]]></category>
+		<category><![CDATA[sierpinski]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=1133</guid>
+
+					<description><![CDATA[El método que hemos escogido para dibujar la alfombra de Sierpinski en el artículo anterior es muy poco eficiente, la aplicación que lo utiliza, SierpinskiGreyScale, funciona a nueve fotogramas por segundo en mi ordenador. El programa necesita recorrer la matriz de 729 x 729, de la forma en que explicamos, dos veces; una primera vez [...]]]></description>
+										<content:encoded><![CDATA[<p style="text-align: justify;"><span style="color: #4c4c4c;">El método que hemos escogido para dibujar la alfombra de Sierpinski en el <a href="./../../../dibujando-la-alfombra-de-sierpinski-con-pixeles/index.html">artículo anterior</a> es muy poco eficiente, la aplicación que lo utiliza, <a title="SierpinskiGreyScale - Github Alg-a" href="https://github.com/alg-a/herm3TICa/tree/master/exploracion%20pruebas%20y%20juegos/SierpinskiGreyScale" target="_blank">SierpinskiGreyScale</a>, funciona a nueve fotogramas por segundo en mi ordenador. El programa necesita recorrer la matriz de 729 x 729, de la forma en que explicamos, dos veces; una primera vez para sumar los valores de todos los pixeles que están en los cuadrados centrales y una segunda vez para calcular la media de todos los valores sumados dividiendo el resultado por el número de pixeles de cada cuadrado, almacenar la media como escala de grises en las áreas sensibles y crear una textura que muestre el resultado.</span></p>
+<p><a href="./../../../wp-content/uploads/2015/02/sierpinski-shaders_00.png"><img decoding="async" class="alignnone wp-image-1134 size-full" src="./../../../wp-content/uploads/2015/02/sierpinski-shaders_00.png" alt="sierpinski-shaders_00" width="950" height="292" srcset="./../../../wp-content/uploads/2015/02/sierpinski-shaders_00.png 950w, ./../../../wp-content/uploads/2015/02/sierpinski-shaders_00-300x92.png 300w" sizes="(max-width: 950px) 100vw, 950px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">¿Podemos utilizar shaders o aprovechar la forma de trabajar con Frame Buffer Objects que sugerimos en el <a title="Redimensionando una imagen" href="./../../../redimensionando-una-imagen/index.html">segundo artículo</a>, con el fin de resolver de forma mas eficiente el problema?</span></p>
+<p><a href="./../../../wp-content/uploads/2015/02/sierpinski-shaders_03.png"><img decoding="async" class="alignnone wp-image-1137 size-full" src="./../../../wp-content/uploads/2015/02/sierpinski-shaders_03.png" alt="sierpinski-shaders_03" width="668" height="329" srcset="./../../../wp-content/uploads/2015/02/sierpinski-shaders_03.png 668w, ./../../../wp-content/uploads/2015/02/sierpinski-shaders_03-300x147.png 300w" sizes="(max-width: 668px) 100vw, 668px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Reconsideremos la naturaleza de lo que la alfombra de Sierpinski propone en cada nivel. Comenzamos partiendo de una imagen de 729 x729 que descompusimos en un cuadrado central y ocho zonas de 243 x 243 pixeles. Sin embargo, desde el punto de vista de la alfombra, lo único que necesitábamos era transformar la imagen original en una matriz de 3 x 3 pixeles y seleccionar el pixel central. Podemos realizar este trabajo de forma muy eficiente y con mucha facilidad redimensionando la imagen mediante un Frame Buffer Object.</span></p>
+<pre style="font-size: .8em;">// declaración
+OfFbo		fbo_1;
+ofPixels    pixels_1;
+ofTexture	texture_1;
+
+...
+
+// asignacion de memoria
+fbo_1.allocate(5, 3, GL_RGB, 0);
+texture_1.allocate(5, 3, GL_RGB);
+texture_1.setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
+
+...
+
+fbo_1.begin();
+ofClear(0, 0, 0, 255);
+videoTexture.draw(0, 0, 3, 3);
+fbo_1.end();
+fbo_1.readToPixels(pixels_1);
+texture_1.loadData(pixels_1.getPixels(), 5, 3, GL_RGB);</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Al hacerlo nos hemos encontrado con un extraño problema, trabajando con texturas y Frame Buffer Objects cuyo ancho era un múltiplo exacto de 3, la tarjeta gráfica del ordenador generaba extraños errores y fallos. Sin haber ocupado mucho tiempo en averiguar porqué sucede esto, para resolver el problema, hemos decidido utilizar anchos 2 pixeles más grandes de lo que necesitamos, por esta razón en el fragmento de código anterior la textura y el Frame Buffer Object tienen un tamaño de 5 x 3 pixeles.</span></p>
+<pre style="font-size: .8em;">texture_1.setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">La clave de esta nueva estrategia que proponemos está en la sexta línea del código. La función setTextureMinMagFilter nos permite establecer la forma en que se renderizará la textura en la que almacenamos la matriz de 3 x 3 pixeles del primer nivel de la alfombra, de modo que mantenga su geometría aunque la mostremos en la pantalla a un tamaño de 729 x 729, debido al tipo de cálculo que se realizará para generar por interpolación los 531.441 pixeles que habrá en la pantalla para representar una textura que solamente tiene 9 pixeles, GL_NEAREST.</span></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">A continuación simplemente debemos realizar la misma operación para almacenar cada nivel de la alfombra en una textura del tamaño adecuado, 9 x 9, 27 x 27, 81 x 81 y 243 x 243.</span></p>
+<pre style="font-size: .8em;">// declaración
+OfFbo		fbo_2;
+ofPixels    pixels_2;
+ofTexture	texture_2;
+
+...
+
+// asignacion de memoria
+fbo_2.allocate(11, 9, GL_RGB, 0);
+texture_2.allocate(11, 9, GL_RGB);
+texture_2.setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
+
+...
+
+fbo_2.begin();
+ofClear(0, 0, 0, 255);
+videoTexture.draw(0, 0, 9, 9);
+fbo_2.end();
+fbo_2.readToPixels(pixels_2);
+texture_2.loadData(pixels_2.getPixels(), 11, 9, GL_RGB);
+
+...</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">De hecho podemos simplificar muchísimo el código almacenando Frame Buffer Objects, texturas, pixeles y tamaños en arrays, para hacer todas las operaciones en el contexto de un bucle for.</span></p>
+<pre style="font-size: .8em;">// declaración
+OfFbo		fbo[6];
+ofPixels    pix[6];
+ofTexture	texture[6];
+int         w[6];
+int         h[6];
+
+...
+
+// asignacion de memoria
+for (int i=0; i&lt;6; i++) {
+	fbo[i].allocate(w[i], h[i], GL_RGB, 0);
+	texture[i].allocate(w[i], h[i], GL_RGB);
+	texture[i].setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
+}
+
+...
+
+for (int i=0; i&lt;6; i++) {
+  	fbo[i].begin();
+	ofClear(0, 0, 0, 255);
+	videoTexture.draw(0,0, w[i]-2, h[i]);
+	fbo[i].end();
+	fbo[i].readToPixels(pix[i]);
+	texture[i].loadData(Pix[i].getPixels(), w[i], h[i], GL_RGB);
+}</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Una vez hayamos almacenado cada uno de los niveles de la alfombra en una textura diferente solamente nos quedará el delicado trabajo de mostrarlas unas encima de otras de modo que únicamente sean visibles los cuadrados centrales.</span></p>
+<p><a href="./../../../wp-content/uploads/2015/02/01-mago-composit.png"><img decoding="async" class="alignnone wp-image-1148 size-large" src="./../../../wp-content/uploads/2015/02/01-mago-composit-1024x686.png" alt="01-mago-composit" width="1024" height="686" srcset="./../../../wp-content/uploads/2015/02/01-mago-composit-1024x686.png 1024w, ./../../../wp-content/uploads/2015/02/01-mago-composit-300x201.png 300w, ./../../../wp-content/uploads/2015/02/01-mago-composit.png 1132w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Recurramos a la misma lógica que seguimos en el artículo anterior. En el primer nivel el cuadrado central corresponde a un pixel cuyas coordenadas X e Y en la matriz de 3 x 3 son 1 y 1. En el segundo nivel tenemos una matriz de 9 x 9, con ocho zonas de 3 x 3 pixeles dentro de las cuales debemos seleccionar un cuadrado central que, a su vez, corresponde a un pixel cuyas coordenadas X e Y son, otra vez, 1 y 1. Al margen de la posición en la que esté cada pixel central, el resto de la división entera de sus coordenadas de entre 3 será siempre 1, ya que se tratará del segundo pixel de un grupo de tres pixeles, el número 1 contando a partir del 0.</span></p>
+<p><a href="./../../../wp-content/uploads/2015/02/sierpinski-shaders_04.png"><img decoding="async" class="alignnone wp-image-1149 size-full" src="./../../../wp-content/uploads/2015/02/sierpinski-shaders_04.png" alt="sierpinski-shaders_04" width="720" height="213" srcset="./../../../wp-content/uploads/2015/02/sierpinski-shaders_04.png 720w, ./../../../wp-content/uploads/2015/02/sierpinski-shaders_04-300x88.png 300w" sizes="(max-width: 720px) 100vw, 720px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">En todos y cada uno de los niveles sucede exactamente lo mismo, el cuadrado central se corresponde con el segundo pixel de un grupo de tres, por lo tanto, podemos utilizar un shader para cambiar la transparencia de todos los pixeles de las texturas que hemos creado en función de sus coordenadas y hacer visibles solamente los cuadrados centrales. Bastará con asignar 0 al valor del canal alpha de cada pixel, cuando el resto de la división entera de sus coordenadas entre tres no sea 1 en ambos ejes.</span></p>
+<pre style="font-size: .8em;">uniform sampler2DRect tex0;
+in vec2 texCoordVarying;
+
+out vec4 outputColor;
+
+void main() {
+	 
+	vec4 texel0 = texture(tex0, texCoordVarying);
+	float alpha = 1.0;
+	((floor(mod(texCoordVarying.x, 3)) == 1) &amp;&amp; (floor(mod(texCoordVarying.y, 3)) == 1)) ? alpha = 1.0 : alpha = 0.0;
+	if ((texel0.r == 0) &amp;&amp; (texel0.g == 0) &amp;&amp; (texel0.b == 0)) alpha = 0.0;
+	outputColor = vec4(texel0.r, texel0.g, texel0.b, alpha);
+	
+}</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Hemos utilizado esta estrategia para hacer una segunda aplicación y el resultado es asombroso, el nuevo programa permite dibujar un Sierpinski a partir del feedback de la webcam el doble de grande, 1458 x 729, y sin embargo funciona a 50 fotogramas por segundo.</span></p>
+<p><a title="Sierpinski Shaders - Github Alg-a" href="https://github.com/alg-a/herm3TICa/tree/master/exploracion%20pruebas%20y%20juegos/SierpinskiShaders">https://github.com/alg-a/herm3TICa/tree/master/exploracion%20pruebas%20y%20juegos/SierpinskiShaders</a></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../dibujando-la-alfombra-de-sierpinski-shaders-y-fbo/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Redimensionando una imagen</title>
+		<link>./../../../redimensionando-una-imagen/index.html</link>
+					<comments>./../../../redimensionando-una-imagen/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[Horacio]]></dc:creator>
+		<pubDate>Mon, 26 Jan 2015 09:35:17 +0000</pubDate>
+				<category><![CDATA[code]]></category>
+		<category><![CDATA[Investigación]]></category>
+		<category><![CDATA[Máquina Abstracta]]></category>
+		<category><![CDATA[OpenFrameworks]]></category>
+		<category><![CDATA[Previos]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[fbo]]></category>
+		<category><![CDATA[fundamentos]]></category>
+		<category><![CDATA[interpolación]]></category>
+		<category><![CDATA[pixeles]]></category>
+		<category><![CDATA[redimensionado]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=947</guid>
+
+					<description><![CDATA[Si queremos trabajar exclusivamente en un fragmento de una imagen, o queremos redimensionarla, ampliar o reducir su tamaño, la forma más sencilla de trabajar consiste en leer los pixeles de la matriz original y copiar aquellos que vamos a utilizar en una nueva matriz que tenga el tamaño deseado. En este tipo de situación trabajamos [...]]]></description>
+										<content:encoded><![CDATA[<p><a href="./../../../wp-content/uploads/2015/01/02-sacerdotisa-detalle.png"><img decoding="async" class="alignnone wp-image-948 size-full" src="./../../../wp-content/uploads/2015/01/02-sacerdotisa-detalle.png" alt="02-sacerdotisa-detalle" width="654" height="336" srcset="./../../../wp-content/uploads/2015/01/02-sacerdotisa-detalle.png 654w, ./../../../wp-content/uploads/2015/01/02-sacerdotisa-detalle-300x154.png 300w" sizes="(max-width: 654px) 100vw, 654px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Si queremos trabajar exclusivamente en un fragmento de una imagen, o queremos redimensionarla, ampliar o reducir su tamaño, la forma más sencilla de trabajar consiste en leer los pixeles de la matriz original y copiar aquellos que vamos a utilizar en una nueva matriz que tenga el tamaño deseado. En este tipo de situación trabajamos con dos imágenes o matrices de pixeles, la fuente y el resultado, que generalmente tienen tamaños diferentes, una es mas grande que la otra, por lo que o bien es necesario duplicar pixeles, cuando la imagen resultado es mas grande, o bien es necesario saltarse algunos de los pixeles, cuando la imagen resultado es mas pequeña.</span></p>
+<p style="text-align: justify;"><a href="./../../../wp-content/uploads/2015/01/matrices.png"><img decoding="async" class="alignnone wp-image-953 size-full" src="./../../../wp-content/uploads/2015/01/matrices.png" alt="matrices" width="460" height="188" srcset="./../../../wp-content/uploads/2015/01/matrices.png 460w, ./../../../wp-content/uploads/2015/01/matrices-300x122.png 300w" sizes="(max-width: 460px) 100vw, 460px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">La solución ideal para este tipo de casos consiste en realizar algunos cálculos llamados interpolaciones que permiten introducir pixeles con valores intermedios en la nueva imagen o obtener una valor medio de los pixeles que no utilizamos. Sin embargo, en muchas ocasiones duplicar o saltarse pixeles ofrece un resultado suficientemente correcto y basta con leer los datos de la imagen fuente mientras recorremos la matriz de la imagen resultado para realizar el trabajo.</span></p>
+<p style="text-align: justify;"><a href="./../../../wp-content/uploads/2015/01/interpolaciones.png"><img decoding="async" class="alignnone wp-image-949 size-full" src="./../../../wp-content/uploads/2015/01/interpolaciones.png" alt="interpolaciones" width="470" height="148" srcset="./../../../wp-content/uploads/2015/01/interpolaciones.png 470w, ./../../../wp-content/uploads/2015/01/interpolaciones-300x94.png 300w" sizes="(max-width: 470px) 100vw, 470px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Si empleamos el sistema que utilizamos en el ejercicio anterior para recorrer la matriz de la imagen resultado pixel a pixel y obtener su posición x e y, resulta bastante sencillo calcular la posición que corresponde a ese pixel en la imagen fuente haciendo el cálculo inverso. Basta con sumar el margen lateral izquierdo a la coordenada x y el margen superior a la coordenada, si estamos realizando un recorte, y hacer el siguiente cálculo: [numero de lineas recorridas * ancho de la imagen fuente + posición por la que vamos en la linea actual].</span></p>
+<pre style="font-size: .8em;">for (int i=0; i&lt;pixelesResultado; i++) {
+        int x = i % (anchoResultado * 3);
+        int y = (i - x) / ( anchoResultado * 3);
+        x += margenIzquierdo*3;
+        y += margenSuperior;
+        int nuevaPosicion = (y * anchoFuente * 3 + x);
+}
+</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">¿Es posible evitar realizar este trabajo? Sí, en lugar de hacerlo nosotros, podemos pedirle a la tarjeta gráfica que lo haga. Imaginemonos que pudiésemos dibujar la imagen fuente ampliándola o reduciéndola de tamaño, haciendo incluso que parte de la imagen quede fuera de la pantalla de modo que solamente sea visible el fragmento que queramos utilizar. Si pudiéramos hacerlo y ademas consiguiésemos capturar la pantalla y almacenarla en una nueva matriz, habríamos realizado el trabajo sin hacer casi ningún esfuerzo. Eso es precisamente lo que permite hacer un FBO (Frame Buffer Object), dibujar en un objeto como si lo hiciésemos en la pantalla y reutilizar después el conjunto de pixeles dibujados.</span></p>
+<pre style="font-size: .8em;">// declaración
+ofFbo fbo; // Frame buffer object
+ofPixels pixeles; // objecto para almacenar y copiar pixeles
+ofTexture texture; // Textura o imagen original
+ofTexture newTexture; // Textura resultante
+
+...
+
+// asignacion de memoria  
+texture.allocate(antiguoAncho, antiguoAlto, GL_RGB);    
+newTexture.allocate(nuevoAncho, nuevoAlto, GL_RGB);        
+fbo.allocate(nuevoAncho, nuevoAlto, GL_RGB, 0);
+
+...
+
+// redimensionado
+fbo.begin();
+texture.draw(0, 0, nuevoAncho, nuevoAlto); // tambien se puede dibujar la imagen mas grande para hacer un recorte
+fbo.end();
+fbo.readToPixels(pixeles);
+newTexture.loadData(pixeles.getPixels(), nuevoAncho, nuevoAlto, GL_RGB);
+</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">La gran ventaja de esta nueva estrategia es que la tarjeta gráfica esta diseñada para realizar este tipo de trabajo, por lo que el proceso resultará mucho mas eficiente. Pero además, podremos controlar la forma en que se calculan pixeles que antes simplemente duplicábamos o nos saltábamos, sin necesidad de hacer ningún trabajo, bastará indicarle previamente a la tarjeta gráfica el tipo de interpolaciones que queremos que haga con la textura que dibujemos.</span></p>
+<pre style="font-size: .8em;">texture.setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
+</pre>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../redimensionando-una-imagen/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

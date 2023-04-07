@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>app &#8211; herm3TICa</title>
+	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
+	<link>./../../../index.html</link>
+	<description>Cámaras, sensores y telepresencia</description>
+	<lastBuildDate>Thu, 12 Feb 2015 19:06:27 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2</generator>
+	<item>
+		<title>Set up de proyecciones</title>
+		<link>./../../../set-up-de-proyecciones/index.html</link>
+					<comments>./../../../set-up-de-proyecciones/index.html#comments</comments>
+		
+		<dc:creator><![CDATA[man2hauser]]></dc:creator>
+		<pubDate>Wed, 14 Jan 2015 16:12:41 +0000</pubDate>
+				<category><![CDATA[Investigación]]></category>
+		<category><![CDATA[OpenFrameworks]]></category>
+		<category><![CDATA[Previos]]></category>
+		<category><![CDATA[setup]]></category>
+		<category><![CDATA[streaming]]></category>
+		<category><![CDATA[app]]></category>
+		<category><![CDATA[cámara obscura]]></category>
+		<category><![CDATA[OSC]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=853</guid>
+
+					<description><![CDATA[Diagrama de la escenografía que diseñamos para el Laboratorio herm3TICo de performance, durante nuestra primera residencia en Alg-a Lab. La idea es utilizar tres proyecciones con sus correspondientes aplicaciones de openFrameworks (en adelante of1, of2, of3) comunicadas via OSC, que ofrezcan tres puntos de vista distintos sobre lo que está sucediendo (el espejo, la interface [...]]]></description>
+										<content:encoded><![CDATA[<p style="text-align: justify;">Diagrama de la escenografía que diseñamos para el <strong>Laboratorio herm3TICo de performance</strong>, durante nuestra primera residencia en <strong>Alg-a Lab</strong>. La idea es utilizar tres proyecciones con sus correspondientes <strong>aplicaciones de openFrameworks</strong> (en adelante <strong>of1, of2, of3</strong>) comunicadas <strong>via OSC</strong>, que ofrezcan tres puntos de vista distintos sobre lo que está sucediendo (<strong>el espejo, la interface de análisisis y la narrativa</strong>, en este caso). A partir de aquí, hemos reorganizado la estructura del <a title="Github Alg-a" href="http://github.com/alg-a"><strong>repositorio Github</strong></a> del proyecto en función de esta estructura dejando sólo en la raíz una carpeta para cada una de las aplicaciones, una carpeta a mayores para todo lo que esté relacionado con el <strong>streaming</strong> y por último otra con el nombre de &#8220;exploración pruebas y juegos&#8221; como espacio más diáfano de experimentación. Esta sería la función y uso de cada una de las aplicaciones:</p>
+<p style="text-align: justify;"><span style="color: #ff33b1;"><strong>of1: espejo: </strong></span>que ofrece un reflejo directo del cuerpo del performer como feedback para la exploración. Aplicación que muestra la imagen de una webcam invertida de derecha a izquierda y permite las siguientes opciones:</p>
+<ul>
+<li style="text-align: justify;">Ajustes de contraste y tono para controlar la estética de la imagen</li>
+<li style="text-align: justify;">Gravar fragmentos como archivos de memoria para escenas posteriores</li>
+</ul>
+<p><a href="./../../../wp-content/uploads/2015/01/planta_proyecciones.png"><img decoding="async" class="alignnone wp-image-854 size-full" src="./../../../wp-content/uploads/2015/01/planta_proyecciones.png" alt="planta_proyecciones" width="1540" height="1110" srcset="./../../../wp-content/uploads/2015/01/planta_proyecciones.png 1540w, ./../../../wp-content/uploads/2015/01/planta_proyecciones-300x216.png 300w, ./../../../wp-content/uploads/2015/01/planta_proyecciones-1024x738.png 1024w" sizes="(max-width: 1540px) 100vw, 1540px" /></a></p>
+<p style="text-align: justify;"><span style="color: #ff33b1;"><strong>of2: interfaz: </strong></span>de análisis que ofrece una representación de lo que el ordenador ve como feedback para la exploración. Aplicación que analiza una fuente de video para producir información sobre el movimiento del performer que será enviada vía OSC o7y Json y que muestra una representación visual de dicho proceso de análisis.</p>
+<p style="text-align: justify;"><span style="color: #ff33b1;"><strong>of3: narrativa: </strong></span>resultante del análisis del movimiento del performer que muestra fragmentos de vídeo de distintas fuentes modificados en tiempo real. Aplicación que recibe datos procedentes del interfaz de análisis o del sistema de streaming para mezclar y transformar fuentes de vídeo e imagen como pequeños clips asociados a cada carta o fragmentos de sus imágenes.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../set-up-de-proyecciones/feed/index.html</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comentarios en: Set up de proyecciones	</title>
+	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
+	<link>./../index.html</link>
+	<description>Cámaras, sensores y telepresencia</description>
+	<lastBuildDate>Thu, 12 Feb 2015 19:06:27 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2</generator>
+	<item>
+		<title>
+		Por: herm3TICa &#124; Set up de conexiones		</title>
+		<link>./../index.html#comment-14</link>
+
+		<dc:creator><![CDATA[herm3TICa &#124; Set up de conexiones]]></dc:creator>
+		<pubDate>Wed, 11 Feb 2015 13:21:00 +0000</pubDate>
+		<guid isPermaLink="false">./../../index.html?p=853#comment-14</guid>
+
+					<description><![CDATA[[&#8230;] de nuestro set up de proyecciones, así como de la configuración de las aplicaciones, las escenas con sus pautas y la disposición [&#8230;]]]></description>
+			<content:encoded><![CDATA[<p>[&#8230;] de nuestro set up de proyecciones, así como de la configuración de las aplicaciones, las escenas con sus pautas y la disposición [&#8230;]</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

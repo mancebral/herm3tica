@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Media Lab &#8211; herm3TICa</title>
+	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
+	<link>./../../../index.html</link>
+	<description>Cámaras, sensores y telepresencia</description>
+	<lastBuildDate>Thu, 20 May 2021 17:54:59 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2</generator>
+	<item>
+		<title>Ni hermética, ni hermenéutica: participación en el Congreso de Hermes</title>
+		<link>./../../../ni-hermetica-ni-hermeneutica-participacion-en-el-congreso-de-hermes/index.html</link>
+					<comments>./../../../ni-hermetica-ni-hermeneutica-participacion-en-el-congreso-de-hermes/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[man2hauser]]></dc:creator>
+		<pubDate>Thu, 20 May 2021 17:52:03 +0000</pubDate>
+				<category><![CDATA[Investigación]]></category>
+		<category><![CDATA[Congreso Hermes]]></category>
+		<category><![CDATA[Filosofía]]></category>
+		<category><![CDATA[Media Lab]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=10893</guid>
+
+					<description><![CDATA[Participo en el Congreso Hermes que tiene lugar en Lanzarote (España) del 22 al 26 de marzo. Presento una charla sobre las relaciones entre filosofía y tecnología y su configuración en un media lab.]]></description>
+										<content:encoded><![CDATA[
+<p>Participo en el <a href="https://www.congresohermes.com/" target="_blank" rel="noreferrer noopener">Congreso Hermes </a>que tiene lugar en Lanzarote (España) del 22 al 26 de marzo. Presento una charla sobre las relaciones entre filosofía y tecnología y su configuración en un media lab. El congreso quiere reunir a investigadores en torno al tema de la comunicación, los medios audiovisuales y el análisis. Como parte de mi comunicación, presento un laboratorio de medios que es un laboratorio herm3TIC. Con este neologismo quiero acercarme a la corriente hermética pero intentando abrirla a través de las tecnologías.</p>
+
+
+
+<figure class="wp-block-embed-youtube wp-block-embed is-type-video is-provider-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<iframe title="herm3TIC lab" width="500" height="281" src="https://www.youtube.com/embed/qvOxOU_Tg80?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><figcaption>herm3TIC Lab</figcaption></figure>
+
+
+
+<p>La hermenéutica es una de las corrientes más importantes en los estudios de las ciencias humanas. Se opone a la corriente hermética, de menor prestigio académico y, supuestamente, de menor rigor científico. Sin embargo, se pueden encontrar una gran cantidad de autores y estudios que apoyan una aproximación a los estudios humanísticos de una manera más cercana a la hermética. En ellos, el uso de tecnologías es clave como parte de la implementación del conocimiento y la comunicación.</p>
+
+
+
+<p>Para mostrar este contraste, expongo las bases teóricas de la hermenéutica así como las corrientes alternativas más cercanas a la hermética. Entonces, llego a la noción de “tiempo profundo de la tecnología”. Este concepto acerca las tendencias más pragmáticas de las ciencias humanas a los enfoques de la tradición hermética.</p>
+
+
+
+<p>Por favor, mire el video y comparta sus pensamientos sobre las relaciones entre filosofía y tecnología en los comentarios de youtube. Puedes encontrar más sobre este tipo de metodologías <a href="http://man.herm3tica.tv/theater-virtual-reality-as-an-experimental-methodology-for-the-humanities/">en estas publicaciones</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../ni-hermetica-ni-hermeneutica-participacion-en-el-congreso-de-hermes/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

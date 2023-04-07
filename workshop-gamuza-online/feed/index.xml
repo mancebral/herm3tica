@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Redirigiendo...</title>
+		<meta http-equiv="refresh" content="0;url=.//workshop-gamuza/">
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.location = ".//workshop-gamuza/";
+		</script>
+
+		<p>Estás siendo redirigido a <a href=".//workshop-gamuza/">.//workshop-gamuza/</a></p>
+	</body>
+</html>

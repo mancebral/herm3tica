@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Horacio &#8211; herm3TICa</title>
+	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
+	<link>./../../../index.html</link>
+	<description>Cámaras, sensores y telepresencia</description>
+	<lastBuildDate>Sun, 08 Feb 2015 21:49:04 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2</generator>
+	<item>
+		<title>Dibujando la alfombra de Sierpinski (Shaders y FBO)</title>
+		<link>./../../../dibujando-la-alfombra-de-sierpinski-shaders-y-fbo/index.html</link>
+					<comments>./../../../dibujando-la-alfombra-de-sierpinski-shaders-y-fbo/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[Horacio]]></dc:creator>
+		<pubDate>Sun, 08 Feb 2015 21:46:51 +0000</pubDate>
+				<category><![CDATA[Alfombra de Sierpinski]]></category>
+		<category><![CDATA[Investigación]]></category>
+		<category><![CDATA[Máquina Abstracta]]></category>
+		<category><![CDATA[OpenFrameworks]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[3]]></category>
+		<category><![CDATA[alpha]]></category>
+		<category><![CDATA[fbo]]></category>
+		<category><![CDATA[fundamentos]]></category>
+		<category><![CDATA[interpolación]]></category>
+		<category><![CDATA[módulo]]></category>
+		<category><![CDATA[pixeles]]></category>
+		<category><![CDATA[posición]]></category>
+		<category><![CDATA[redimensionado]]></category>
+		<category><![CDATA[shaders]]></category>
+		<category><![CDATA[sierpinski]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=1133</guid>
+
+					<description><![CDATA[El método que hemos escogido para dibujar la alfombra de Sierpinski en el artículo anterior es muy poco eficiente, la aplicación que lo utiliza, SierpinskiGreyScale, funciona a nueve fotogramas por segundo en mi ordenador. El programa necesita recorrer la matriz de 729 x 729, de la forma en que explicamos, dos veces; una primera vez [...]]]></description>
+										<content:encoded><![CDATA[<p style="text-align: justify;"><span style="color: #4c4c4c;">El método que hemos escogido para dibujar la alfombra de Sierpinski en el <a href="./../../../dibujando-la-alfombra-de-sierpinski-con-pixeles/index.html">artículo anterior</a> es muy poco eficiente, la aplicación que lo utiliza, <a title="SierpinskiGreyScale - Github Alg-a" href="https://github.com/alg-a/herm3TICa/tree/master/exploracion%20pruebas%20y%20juegos/SierpinskiGreyScale" target="_blank">SierpinskiGreyScale</a>, funciona a nueve fotogramas por segundo en mi ordenador. El programa necesita recorrer la matriz de 729 x 729, de la forma en que explicamos, dos veces; una primera vez para sumar los valores de todos los pixeles que están en los cuadrados centrales y una segunda vez para calcular la media de todos los valores sumados dividiendo el resultado por el número de pixeles de cada cuadrado, almacenar la media como escala de grises en las áreas sensibles y crear una textura que muestre el resultado.</span></p>
+<p><a href="./../../../wp-content/uploads/2015/02/sierpinski-shaders_00.png"><img decoding="async" class="alignnone wp-image-1134 size-full" src="./../../../wp-content/uploads/2015/02/sierpinski-shaders_00.png" alt="sierpinski-shaders_00" width="950" height="292" srcset="./../../../wp-content/uploads/2015/02/sierpinski-shaders_00.png 950w, ./../../../wp-content/uploads/2015/02/sierpinski-shaders_00-300x92.png 300w" sizes="(max-width: 950px) 100vw, 950px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">¿Podemos utilizar shaders o aprovechar la forma de trabajar con Frame Buffer Objects que sugerimos en el <a title="Redimensionando una imagen" href="./../../../redimensionando-una-imagen/index.html">segundo artículo</a>, con el fin de resolver de forma mas eficiente el problema?</span></p>
+<p><a href="./../../../wp-content/uploads/2015/02/sierpinski-shaders_03.png"><img decoding="async" class="alignnone wp-image-1137 size-full" src="./../../../wp-content/uploads/2015/02/sierpinski-shaders_03.png" alt="sierpinski-shaders_03" width="668" height="329" srcset="./../../../wp-content/uploads/2015/02/sierpinski-shaders_03.png 668w, ./../../../wp-content/uploads/2015/02/sierpinski-shaders_03-300x147.png 300w" sizes="(max-width: 668px) 100vw, 668px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Reconsideremos la naturaleza de lo que la alfombra de Sierpinski propone en cada nivel. Comenzamos partiendo de una imagen de 729 x729 que descompusimos en un cuadrado central y ocho zonas de 243 x 243 pixeles. Sin embargo, desde el punto de vista de la alfombra, lo único que necesitábamos era transformar la imagen original en una matriz de 3 x 3 pixeles y seleccionar el pixel central. Podemos realizar este trabajo de forma muy eficiente y con mucha facilidad redimensionando la imagen mediante un Frame Buffer Object.</span></p>
+<pre style="font-size: .8em;">// declaración
+OfFbo		fbo_1;
+ofPixels    pixels_1;
+ofTexture	texture_1;
+
+...
+
+// asignacion de memoria
+fbo_1.allocate(5, 3, GL_RGB, 0);
+texture_1.allocate(5, 3, GL_RGB);
+texture_1.setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
+
+...
+
+fbo_1.begin();
+ofClear(0, 0, 0, 255);
+videoTexture.draw(0, 0, 3, 3);
+fbo_1.end();
+fbo_1.readToPixels(pixels_1);
+texture_1.loadData(pixels_1.getPixels(), 5, 3, GL_RGB);</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Al hacerlo nos hemos encontrado con un extraño problema, trabajando con texturas y Frame Buffer Objects cuyo ancho era un múltiplo exacto de 3, la tarjeta gráfica del ordenador generaba extraños errores y fallos. Sin haber ocupado mucho tiempo en averiguar porqué sucede esto, para resolver el problema, hemos decidido utilizar anchos 2 pixeles más grandes de lo que necesitamos, por esta razón en el fragmento de código anterior la textura y el Frame Buffer Object tienen un tamaño de 5 x 3 pixeles.</span></p>
+<pre style="font-size: .8em;">texture_1.setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">La clave de esta nueva estrategia que proponemos está en la sexta línea del código. La función setTextureMinMagFilter nos permite establecer la forma en que se renderizará la textura en la que almacenamos la matriz de 3 x 3 pixeles del primer nivel de la alfombra, de modo que mantenga su geometría aunque la mostremos en la pantalla a un tamaño de 729 x 729, debido al tipo de cálculo que se realizará para generar por interpolación los 531.441 pixeles que habrá en la pantalla para representar una textura que solamente tiene 9 pixeles, GL_NEAREST.</span></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">A continuación simplemente debemos realizar la misma operación para almacenar cada nivel de la alfombra en una textura del tamaño adecuado, 9 x 9, 27 x 27, 81 x 81 y 243 x 243.</span></p>
+<pre style="font-size: .8em;">// declaración
+OfFbo		fbo_2;
+ofPixels    pixels_2;
+ofTexture	texture_2;
+
+...
+
+// asignacion de memoria
+fbo_2.allocate(11, 9, GL_RGB, 0);
+texture_2.allocate(11, 9, GL_RGB);
+texture_2.setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
+
+...
+
+fbo_2.begin();
+ofClear(0, 0, 0, 255);
+videoTexture.draw(0, 0, 9, 9);
+fbo_2.end();
+fbo_2.readToPixels(pixels_2);
+texture_2.loadData(pixels_2.getPixels(), 11, 9, GL_RGB);
+
+...</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">De hecho podemos simplificar muchísimo el código almacenando Frame Buffer Objects, texturas, pixeles y tamaños en arrays, para hacer todas las operaciones en el contexto de un bucle for.</span></p>
+<pre style="font-size: .8em;">// declaración
+OfFbo		fbo[6];
+ofPixels    pix[6];
+ofTexture	texture[6];
+int         w[6];
+int         h[6];
+
+...
+
+// asignacion de memoria
+for (int i=0; i&lt;6; i++) {
+	fbo[i].allocate(w[i], h[i], GL_RGB, 0);
+	texture[i].allocate(w[i], h[i], GL_RGB);
+	texture[i].setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
+}
+
+...
+
+for (int i=0; i&lt;6; i++) {
+  	fbo[i].begin();
+	ofClear(0, 0, 0, 255);
+	videoTexture.draw(0,0, w[i]-2, h[i]);
+	fbo[i].end();
+	fbo[i].readToPixels(pix[i]);
+	texture[i].loadData(Pix[i].getPixels(), w[i], h[i], GL_RGB);
+}</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Una vez hayamos almacenado cada uno de los niveles de la alfombra en una textura diferente solamente nos quedará el delicado trabajo de mostrarlas unas encima de otras de modo que únicamente sean visibles los cuadrados centrales.</span></p>
+<p><a href="./../../../wp-content/uploads/2015/02/01-mago-composit.png"><img decoding="async" class="alignnone wp-image-1148 size-large" src="./../../../wp-content/uploads/2015/02/01-mago-composit-1024x686.png" alt="01-mago-composit" width="1024" height="686" srcset="./../../../wp-content/uploads/2015/02/01-mago-composit-1024x686.png 1024w, ./../../../wp-content/uploads/2015/02/01-mago-composit-300x201.png 300w, ./../../../wp-content/uploads/2015/02/01-mago-composit.png 1132w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Recurramos a la misma lógica que seguimos en el artículo anterior. En el primer nivel el cuadrado central corresponde a un pixel cuyas coordenadas X e Y en la matriz de 3 x 3 son 1 y 1. En el segundo nivel tenemos una matriz de 9 x 9, con ocho zonas de 3 x 3 pixeles dentro de las cuales debemos seleccionar un cuadrado central que, a su vez, corresponde a un pixel cuyas coordenadas X e Y son, otra vez, 1 y 1. Al margen de la posición en la que esté cada pixel central, el resto de la división entera de sus coordenadas de entre 3 será siempre 1, ya que se tratará del segundo pixel de un grupo de tres pixeles, el número 1 contando a partir del 0.</span></p>
+<p><a href="./../../../wp-content/uploads/2015/02/sierpinski-shaders_04.png"><img decoding="async" class="alignnone wp-image-1149 size-full" src="./../../../wp-content/uploads/2015/02/sierpinski-shaders_04.png" alt="sierpinski-shaders_04" width="720" height="213" srcset="./../../../wp-content/uploads/2015/02/sierpinski-shaders_04.png 720w, ./../../../wp-content/uploads/2015/02/sierpinski-shaders_04-300x88.png 300w" sizes="(max-width: 720px) 100vw, 720px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">En todos y cada uno de los niveles sucede exactamente lo mismo, el cuadrado central se corresponde con el segundo pixel de un grupo de tres, por lo tanto, podemos utilizar un shader para cambiar la transparencia de todos los pixeles de las texturas que hemos creado en función de sus coordenadas y hacer visibles solamente los cuadrados centrales. Bastará con asignar 0 al valor del canal alpha de cada pixel, cuando el resto de la división entera de sus coordenadas entre tres no sea 1 en ambos ejes.</span></p>
+<pre style="font-size: .8em;">uniform sampler2DRect tex0;
+in vec2 texCoordVarying;
+
+out vec4 outputColor;
+
+void main() {
+	 
+	vec4 texel0 = texture(tex0, texCoordVarying);
+	float alpha = 1.0;
+	((floor(mod(texCoordVarying.x, 3)) == 1) &amp;&amp; (floor(mod(texCoordVarying.y, 3)) == 1)) ? alpha = 1.0 : alpha = 0.0;
+	if ((texel0.r == 0) &amp;&amp; (texel0.g == 0) &amp;&amp; (texel0.b == 0)) alpha = 0.0;
+	outputColor = vec4(texel0.r, texel0.g, texel0.b, alpha);
+	
+}</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Hemos utilizado esta estrategia para hacer una segunda aplicación y el resultado es asombroso, el nuevo programa permite dibujar un Sierpinski a partir del feedback de la webcam el doble de grande, 1458 x 729, y sin embargo funciona a 50 fotogramas por segundo.</span></p>
+<p><a title="Sierpinski Shaders - Github Alg-a" href="https://github.com/alg-a/herm3TICa/tree/master/exploracion%20pruebas%20y%20juegos/SierpinskiShaders">https://github.com/alg-a/herm3TICa/tree/master/exploracion%20pruebas%20y%20juegos/SierpinskiShaders</a></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../dibujando-la-alfombra-de-sierpinski-shaders-y-fbo/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Dibujando la alfombra de Sierpinski con pixeles</title>
+		<link>./../../../dibujando-la-alfombra-de-sierpinski-con-pixeles/index.html</link>
+					<comments>./../../../dibujando-la-alfombra-de-sierpinski-con-pixeles/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[Horacio]]></dc:creator>
+		<pubDate>Sat, 07 Feb 2015 22:10:00 +0000</pubDate>
+				<category><![CDATA[Alfombra de Sierpinski]]></category>
+		<category><![CDATA[code]]></category>
+		<category><![CDATA[Investigación]]></category>
+		<category><![CDATA[Máquina Abstracta]]></category>
+		<category><![CDATA[OpenFrameworks]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[3]]></category>
+		<category><![CDATA[cálculo coordenadas]]></category>
+		<category><![CDATA[fundamentos]]></category>
+		<category><![CDATA[iteración]]></category>
+		<category><![CDATA[módulo]]></category>
+		<category><![CDATA[pixeles]]></category>
+		<category><![CDATA[posición]]></category>
+		<category><![CDATA[sierpinski]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=1109</guid>
+
+					<description><![CDATA[Hagamos el ejercicio de intentar llevar la lógica del conjunto fractal de la alfombra de Sierpinski al nivel del pixel. Para hacerlo necesitaremos trabajar con imágenes cuyas dimensiones sean potencia de 3, de modo que podamos ir dividiendo sucesivamente el ancho y el alto de la imagen en tres partes iguales, hasta llegar a un [...]]]></description>
+										<content:encoded><![CDATA[<p><a href="./../../../wp-content/uploads/2015/02/self_portrait_sierpinski.png"><img decoding="async" class="alignnone wp-image-1110 size-full" src="./../../../wp-content/uploads/2015/02/self_portrait_sierpinski.png" alt="self_portrait_sierpinski" width="1458" height="729" srcset="./../../../wp-content/uploads/2015/02/self_portrait_sierpinski.png 1458w, ./../../../wp-content/uploads/2015/02/self_portrait_sierpinski-300x150.png 300w, ./../../../wp-content/uploads/2015/02/self_portrait_sierpinski-1024x511.png 1024w, ./../../../wp-content/uploads/2015/02/self_portrait_sierpinski-1000x500.png 1000w" sizes="(max-width: 1458px) 100vw, 1458px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Hagamos el ejercicio de intentar llevar la lógica del conjunto fractal de la alfombra de Sierpinski al nivel del pixel. Para hacerlo necesitaremos trabajar con imágenes cuyas dimensiones sean potencia de 3, de modo que podamos ir dividiendo sucesivamente el ancho y el alto de la imagen en tres partes iguales, hasta llegar a un fragmento de 1 x 1 pixel.</span></p>
+<pre style="font-size: .8em;">1, 3, 9, 27, 81, 243, 729 ...</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Usemos una imagen de 729 x 729 pixeles para dibujar un Sierpinski de 6 niveles. ¿Cómo podemos saber que pixeles corresponden al cuadrado central de 243 x 243 cuando recorremos la matriz?<br />
+</span></p>
+<p><a href="./../../../wp-content/uploads/2015/02/sierpinski_00.png"><img decoding="async" class="alignnone wp-image-1112 size-full" src="./../../../wp-content/uploads/2015/02/sierpinski_00.png" alt="sierpinski_00" width="904" height="770" srcset="./../../../wp-content/uploads/2015/02/sierpinski_00.png 904w, ./../../../wp-content/uploads/2015/02/sierpinski_00-300x255.png 300w" sizes="(max-width: 904px) 100vw, 904px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Lo primero que necesitaremos es conocer las coordenadas X e Y de cada pixel en función de su índice, para lo que utilizaremos el sistema de cálculo que propusimos en el <a title="Contando pixeles" href="./../../../contando-pixeles/index.html">artículo 01</a>. También es importante recordar que multiplicaremos todas las medidas por 3 ya que, para cada pixel, en realidad hay tres valores almacenados en la matriz, R, G y B.</span></p>
+<pre style="font-size: .8em;">for (int i=0; i&lt;totalPixels; i++) {
+
+	int x = i % (width * 3);
+	int y = (i - x) / (width * 3);
+
+	// do something with x and y  …
+
+}</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Como el ancho de nuestra imagen es de 729 pixeles, los pixeles del extremo izquierdo empiezan en la coordenada X = 0 y los del extremo derecho acaban en la coordenada X = 728. Por lo tanto, si dividimos la coordenada X de cualquiera de los pixeles entre 243 siempre obtendremos un valor entre 0 y 2,996, que será inferior a 1 cuando se trate de pixeles de la zona anterior al cuadrado central, estará entre 1 y 2 cuando se trate de pixeles de la zona central y será igual o superior a 2 cuando se trate de pixeles de la zona posterior.</span></p>
+<p><a href="./../../../wp-content/uploads/2015/02/sierpinski_03.png"><img decoding="async" class="alignnone wp-image-1113 size-full" src="./../../../wp-content/uploads/2015/02/sierpinski_03.png" alt="sierpinski_03" width="1036" height="184" srcset="./../../../wp-content/uploads/2015/02/sierpinski_03.png 1036w, ./../../../wp-content/uploads/2015/02/sierpinski_03-300x53.png 300w, ./../../../wp-content/uploads/2015/02/sierpinski_03-1024x181.png 1024w" sizes="(max-width: 1036px) 100vw, 1036px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Si queremos obtener un número entero al dividir y evitar trabajar con decimales, podemos calcular el resto de la división entera y restarlo previamente, utilizando el operador módulo. Así obtendremos un valor igual a 0 para todos los pixeles de la zona anterior al cuadrado, </span><span style="color: #4c4c4c;">igual a 1 para todos los pixeles del cuadrado central e igual a 2 para todos los pixeles de la zona posterior.</span></p>
+<pre style="font-size: .8em;">	int resto_x = x % (243 * 3);
+	int zona_x  = (x - resto_x) / (243 * 3);</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Realizando el mismo cálculo en el eje Y, podemos establecer que todos aquellos pixeles en los que obtengamos 1 y 1 como resultados, están situados en el cuadrado central de la imagen.<br />
+</span></p>
+<pre style="font-size: .8em;">for (int i=0; i&lt;totalPixels; i++) {
+
+	int x = i % (width * 3);
+	int y = (i - x) / (width * 3);
+
+	int resto_x = x % (243 * 3);
+	int resultado_x  = (x - resto_x) / (243 * 3);
+	int resto_y = y % (243 * 3);
+	int resultado_y  = (y - resto_y) / (243 * 3);
+
+	if ((resultado_x == 1)&amp;&amp;(resultado_y == 1)) {
+		// do something with pixels[i]  ...
+	}
+
+}</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Una vez sabemos qué pixeles están en el cuadrado central del primer nivel, intentemos averiguar cuales de los pixeles que no están en dicho cuadrado, están en los cuadrados centrales de de las 8 áreas que quedan definidas a su alrededor. Cada una de estas nuevas zonas tiene un tamaño de 243 x 243 pixeles y, a su vez, sus cuadrados centrales miden 81 x 81 pixeles. ¿Como podemos averiguar las coordenadas X e Y de cada pixel dentro de este nuevo marco de referencia?</span></p>
+<p><a href="./../../../wp-content/uploads/2015/02/sierpinski_01.png"><img decoding="async" class="alignnone wp-image-1115 size-full" src="./../../../wp-content/uploads/2015/02/sierpinski_01.png" alt="sierpinski_01" width="862" height="756" srcset="./../../../wp-content/uploads/2015/02/sierpinski_01.png 862w, ./../../../wp-content/uploads/2015/02/sierpinski_01-300x263.png 300w" sizes="(max-width: 862px) 100vw, 862px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Reflexionemos un poco, ¡en realidad ya las conocemos! Los restos de la división entera, que calculamos con el operador módulo, nos indican dichas coordenadas ya que equivalen al número de pixeles que hemos recorrido desde que sobrepasamos la zona anterior a aquella en la que estamos.</span></p>
+<p><a href="./../../../wp-content/uploads/2015/02/sierpinski_04.png"><img decoding="async" class="alignnone wp-image-1116 size-full" src="./../../../wp-content/uploads/2015/02/sierpinski_04.png" alt="sierpinski_04" width="1036" height="184" srcset="./../../../wp-content/uploads/2015/02/sierpinski_04.png 1036w, ./../../../wp-content/uploads/2015/02/sierpinski_04-300x53.png 300w, ./../../../wp-content/uploads/2015/02/sierpinski_04-1024x181.png 1024w" sizes="(max-width: 1036px) 100vw, 1036px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Saber que pixeles están en los nuevos cuadrados centrales, en realidad, es un problema que ya hemos resuelto con una matriz de diferentes dimensiones. Solamente tenemos que aplicar la misma lógica que en el primer nivel, considerando que ahora tenemos una matriz de 243 x 243 con un cuadrado central de 81 x 81 pixeles.</span></p>
+<pre style="font-size: .8em;">	if ((resultado_x == 1)&amp;&amp;(resultado_y == 1)) {
+		// do something with pixels[i]  ...
+	} else {
+		int x1 = resto_x;
+		int y1 = resto_y;
+		
+		int resto_x1 = x1 % (81 * 3);
+		int resultado_x1  = (x1 - resto_x1) / (81 * 3);
+		int resto_y1 = y1 % (81 * 3);
+		int resultado_y1  = (y1 - resto_y1) / (81 * 3);
+
+		if ((resultado_x1 == 1)&amp;&amp;(resultado_y1 == 1)) {
+			// do something with pixels[i]  ...
+		}
+	}</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Aplicando el mismo sistema podemos proseguir sucesivamente con cuadrados cada vez más pequeños, de 27 x 27, de 9 x 9 y, finalmente de 3 x 3, el último nivel al que podemos llegar trabajando con pixeles.</span></p>
+<p><a href="./../../../wp-content/uploads/2015/02/sierpinski_02.png"><img decoding="async" class="alignnone wp-image-1118 size-full" src="./../../../wp-content/uploads/2015/02/sierpinski_02.png" alt="sierpinski_02" width="744" height="732" srcset="./../../../wp-content/uploads/2015/02/sierpinski_02.png 744w, ./../../../wp-content/uploads/2015/02/sierpinski_02-300x295.png 300w" sizes="(max-width: 744px) 100vw, 744px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">En la siguiente aplicación encontrareis un ejemplo de como hemos combinado el concepto de áreas de activación, descrito en el <a title="Areas de activacion" href="./../../../el-mago-areas-de-activacion/index.html">articulo 00</a>, con la alfombra de Sierpinski, para definir una retícula de zonas sensibles, activables y desactivables, con la que interactuar a través de una web cam.</span></p>
+<p><a title="SierpinskiGreyScale - Github Alg-a" href="https://github.com/alg-a/herm3TICa/tree/master/exploracion%20pruebas%20y%20juegos/SierpinskiGreyScale" target="_blank">https://github.com/alg-a/herm3TICa/tree/master/exploracion%20pruebas%20y%20juegos/SierpinskiGreyScale</a></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../dibujando-la-alfombra-de-sierpinski-con-pixeles/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>La sacerdotisa (centro de gravedad)</title>
+		<link>./../../../la-sacerdotisa-centro-gravedad/index.html</link>
+					<comments>./../../../la-sacerdotisa-centro-gravedad/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[Horacio]]></dc:creator>
+		<pubDate>Thu, 05 Feb 2015 22:26:53 +0000</pubDate>
+				<category><![CDATA[Cartas]]></category>
+		<category><![CDATA[code]]></category>
+		<category><![CDATA[Cuerpo sin órganos]]></category>
+		<category><![CDATA[Investigación]]></category>
+		<category><![CDATA[OpenFrameworks]]></category>
+		<category><![CDATA[Previos]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[análisis]]></category>
+		<category><![CDATA[centro de gravedad]]></category>
+		<category><![CDATA[forma]]></category>
+		<category><![CDATA[fundamentos]]></category>
+		<category><![CDATA[pixeles]]></category>
+		<category><![CDATA[posición]]></category>
+		<category><![CDATA[vectores]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=1083</guid>
+
+					<description><![CDATA[Una vez separada la figura del fondo, recortado todo lo que hemos considerado relevante y eliminadas aquellas partes que hemos determinado como superfluas, ¿Cómo podemos realizar un primer análisis? ¿Cómo podemos empezar a entender la imagen del mismo modo en que lo hace el ordenador y trabajar con una amalgama de pixeles ordenados uno detrás [...]]]></description>
+										<content:encoded><![CDATA[<p style="text-align: justify;"><span style="color: #4c4c4c;">Una vez separada la figura del fondo, recortado todo lo que hemos considerado relevante y eliminadas aquellas partes que hemos determinado como superfluas, ¿Cómo podemos realizar un primer análisis? ¿Cómo podemos empezar a entender la imagen del mismo modo en que lo hace el ordenador y trabajar con una amalgama de pixeles ordenados uno detrás de otro? ¿Cómo extraer de dicha amalgama propiedades que nos hablen de un cuerpo en el espacio? </span></p>
+<p><a href="./../../../wp-content/uploads/2015/02/centro-de-gravedad-01.png"><img decoding="async" class="alignnone wp-image-1085 size-full" src="./../../../wp-content/uploads/2015/02/centro-de-gravedad-01.png" alt="centro-de-gravedad-01" width="948" height="495" srcset="./../../../wp-content/uploads/2015/02/centro-de-gravedad-01.png 948w, ./../../../wp-content/uploads/2015/02/centro-de-gravedad-01-300x156.png 300w" sizes="(max-width: 948px) 100vw, 948px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Entendamos la imagen como un todo, como un cuerpo sin órganos, un continuum de cualidades intensivas (la luminosidad de cada pixel). Si asignamos un peso a cada pixel en función de su luminosidad y averiguamos donde está situado en la imagen, podremos calcular el centro de gravedad de dicho cuerpo, la zona de la imagen donde se acumula la masa, y empezar a comprender un poco más la amalgama informe.</span></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">No necesitamos detalles para hacer un análisis tan sencillo, así que con el fin de simplificar el trabajo y facilitar los cálculos al ordenador podemos trabajar con una imagen de muy baja resolución, 18&#215;9 pixeles bastan para conseguir buenos resultados.</span></p>
+<p><a href="./../../../wp-content/uploads/2015/02/centro-de-gravedad_02.png"><img decoding="async" class="alignnone wp-image-1084 size-full" src="./../../../wp-content/uploads/2015/02/centro-de-gravedad_02.png" alt="centro-de-gravedad_02" width="947" height="591" srcset="./../../../wp-content/uploads/2015/02/centro-de-gravedad_02.png 947w, ./../../../wp-content/uploads/2015/02/centro-de-gravedad_02-300x187.png 300w" sizes="(max-width: 947px) 100vw, 947px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Para cada pixel</span><span style="color: #4c4c4c;"> crearemos un vector en el que guardar la posición X e Y que le corresponden en la imagen.</span></p>
+<pre style="font-size: .8em;">int total = 18 * 9;
+vector&lt;ofVec2f&gt; vectores;
+
+for (int i=0; i&lt;total; i++) {
+	int x = i % 18;
+	int y = (i - x) / 18;
+	vectores.push_back(ofVec2f(x, y));
+}
+</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Recorriendo todos los pixeles de la imagen podremos utilizar el valor en escala de grises de sus colores y dividirlo entre 255 para obtener una cifra entre 0 y 1 que consideraremos su peso específico. De este modo los pixeles claros con luminosidades cercanas a 255 tendrán pesos cercanos a 1 y los pixeles oscuros tendrán pesos cercanos a 0, dichos pesos nos permitirán promediar la suma de los vectores de posición de todos los pixeles.</span></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;"><a href="./../../../wp-content/uploads/2015/02/centro-de-gravedad-04.png"><img decoding="async" class="alignnone size-medium wp-image-1103" src="./../../../wp-content/uploads/2015/02/centro-de-gravedad-04-300x93.png" alt="centro-de-gravedad-04" width="300" height="93" srcset="./../../../wp-content/uploads/2015/02/centro-de-gravedad-04-300x93.png 300w, ./../../../wp-content/uploads/2015/02/centro-de-gravedad-04.png 786w" sizes="(max-width: 300px) 100vw, 300px" /></a></span></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">El cálculo resulta sencillo, simplemente debemos multiplicar cada vector de posición por el peso específico del pixel que le corresponde antes de sumarlos, y, al final, dividir el resultado entre la suma de los pesos de cada pixel. Obteniendo como resultado una posición promediada por los pesos de los pixeles, que consideraremos el centro de gravedad de la imagen.</span></p>
+<pre style="font-size: .8em;">vector vectores;
+unsigned char * pixeles;
+
+int total = 18 * 9;
+ofVec2f vector_promedio(0, 0);
+float peso_promedio = 0;
+
+for (int i=0; i&lt;size; i++) {
+	/* la posición es distinta en el array de vectores que en la imagen
+	porque por cada pixel se almacenan tres valores r, g y b */
+	int posicion = vectores[i].y * 3 + vectores[i].x * 3;  
+	float gris = 0.2126 * pixeles[posicion] + 0.7152 * pixeles[posicion+1] + 0.0722 * pixeles[posicion+2];
+	float peso = gris/255.0;
+	vector_promedio += vectores[i] * peso;
+	peso_promedio += peso;
+}
+
+vector_promedio /= peso_promedio;
+</pre>
+<p><a href="./../../../wp-content/uploads/2015/02/centro-de-gravedad_03.png"><img decoding="async" class="alignnone wp-image-1089 size-full" src="./../../../wp-content/uploads/2015/02/centro-de-gravedad_03.png" alt="centro-de-gravedad_03" width="1280" height="690" srcset="./../../../wp-content/uploads/2015/02/centro-de-gravedad_03.png 1280w, ./../../../wp-content/uploads/2015/02/centro-de-gravedad_03-300x161.png 300w, ./../../../wp-content/uploads/2015/02/centro-de-gravedad_03-1024x552.png 1024w" sizes="(max-width: 1280px) 100vw, 1280px" /></a></p>
+<p><a title="Of2 - Github Alg-a" href="https://github.com/alg-a/herm3TICa/tree/master/of2" target="_blank">https://github.com/alg-a/herm3TICa/tree/master/of2</a></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../la-sacerdotisa-centro-gravedad/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Redimensionando una imagen</title>
+		<link>./../../../redimensionando-una-imagen/index.html</link>
+					<comments>./../../../redimensionando-una-imagen/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[Horacio]]></dc:creator>
+		<pubDate>Mon, 26 Jan 2015 09:35:17 +0000</pubDate>
+				<category><![CDATA[code]]></category>
+		<category><![CDATA[Investigación]]></category>
+		<category><![CDATA[Máquina Abstracta]]></category>
+		<category><![CDATA[OpenFrameworks]]></category>
+		<category><![CDATA[Previos]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[fbo]]></category>
+		<category><![CDATA[fundamentos]]></category>
+		<category><![CDATA[interpolación]]></category>
+		<category><![CDATA[pixeles]]></category>
+		<category><![CDATA[redimensionado]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=947</guid>
+
+					<description><![CDATA[Si queremos trabajar exclusivamente en un fragmento de una imagen, o queremos redimensionarla, ampliar o reducir su tamaño, la forma más sencilla de trabajar consiste en leer los pixeles de la matriz original y copiar aquellos que vamos a utilizar en una nueva matriz que tenga el tamaño deseado. En este tipo de situación trabajamos [...]]]></description>
+										<content:encoded><![CDATA[<p><a href="./../../../wp-content/uploads/2015/01/02-sacerdotisa-detalle.png"><img decoding="async" class="alignnone wp-image-948 size-full" src="./../../../wp-content/uploads/2015/01/02-sacerdotisa-detalle.png" alt="02-sacerdotisa-detalle" width="654" height="336" srcset="./../../../wp-content/uploads/2015/01/02-sacerdotisa-detalle.png 654w, ./../../../wp-content/uploads/2015/01/02-sacerdotisa-detalle-300x154.png 300w" sizes="(max-width: 654px) 100vw, 654px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Si queremos trabajar exclusivamente en un fragmento de una imagen, o queremos redimensionarla, ampliar o reducir su tamaño, la forma más sencilla de trabajar consiste en leer los pixeles de la matriz original y copiar aquellos que vamos a utilizar en una nueva matriz que tenga el tamaño deseado. En este tipo de situación trabajamos con dos imágenes o matrices de pixeles, la fuente y el resultado, que generalmente tienen tamaños diferentes, una es mas grande que la otra, por lo que o bien es necesario duplicar pixeles, cuando la imagen resultado es mas grande, o bien es necesario saltarse algunos de los pixeles, cuando la imagen resultado es mas pequeña.</span></p>
+<p style="text-align: justify;"><a href="./../../../wp-content/uploads/2015/01/matrices.png"><img decoding="async" class="alignnone wp-image-953 size-full" src="./../../../wp-content/uploads/2015/01/matrices.png" alt="matrices" width="460" height="188" srcset="./../../../wp-content/uploads/2015/01/matrices.png 460w, ./../../../wp-content/uploads/2015/01/matrices-300x122.png 300w" sizes="(max-width: 460px) 100vw, 460px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">La solución ideal para este tipo de casos consiste en realizar algunos cálculos llamados interpolaciones que permiten introducir pixeles con valores intermedios en la nueva imagen o obtener una valor medio de los pixeles que no utilizamos. Sin embargo, en muchas ocasiones duplicar o saltarse pixeles ofrece un resultado suficientemente correcto y basta con leer los datos de la imagen fuente mientras recorremos la matriz de la imagen resultado para realizar el trabajo.</span></p>
+<p style="text-align: justify;"><a href="./../../../wp-content/uploads/2015/01/interpolaciones.png"><img decoding="async" class="alignnone wp-image-949 size-full" src="./../../../wp-content/uploads/2015/01/interpolaciones.png" alt="interpolaciones" width="470" height="148" srcset="./../../../wp-content/uploads/2015/01/interpolaciones.png 470w, ./../../../wp-content/uploads/2015/01/interpolaciones-300x94.png 300w" sizes="(max-width: 470px) 100vw, 470px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Si empleamos el sistema que utilizamos en el ejercicio anterior para recorrer la matriz de la imagen resultado pixel a pixel y obtener su posición x e y, resulta bastante sencillo calcular la posición que corresponde a ese pixel en la imagen fuente haciendo el cálculo inverso. Basta con sumar el margen lateral izquierdo a la coordenada x y el margen superior a la coordenada, si estamos realizando un recorte, y hacer el siguiente cálculo: [numero de lineas recorridas * ancho de la imagen fuente + posición por la que vamos en la linea actual].</span></p>
+<pre style="font-size: .8em;">for (int i=0; i&lt;pixelesResultado; i++) {
+        int x = i % (anchoResultado * 3);
+        int y = (i - x) / ( anchoResultado * 3);
+        x += margenIzquierdo*3;
+        y += margenSuperior;
+        int nuevaPosicion = (y * anchoFuente * 3 + x);
+}
+</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">¿Es posible evitar realizar este trabajo? Sí, en lugar de hacerlo nosotros, podemos pedirle a la tarjeta gráfica que lo haga. Imaginemonos que pudiésemos dibujar la imagen fuente ampliándola o reduciéndola de tamaño, haciendo incluso que parte de la imagen quede fuera de la pantalla de modo que solamente sea visible el fragmento que queramos utilizar. Si pudiéramos hacerlo y ademas consiguiésemos capturar la pantalla y almacenarla en una nueva matriz, habríamos realizado el trabajo sin hacer casi ningún esfuerzo. Eso es precisamente lo que permite hacer un FBO (Frame Buffer Object), dibujar en un objeto como si lo hiciésemos en la pantalla y reutilizar después el conjunto de pixeles dibujados.</span></p>
+<pre style="font-size: .8em;">// declaración
+ofFbo fbo; // Frame buffer object
+ofPixels pixeles; // objecto para almacenar y copiar pixeles
+ofTexture texture; // Textura o imagen original
+ofTexture newTexture; // Textura resultante
+
+...
+
+// asignacion de memoria  
+texture.allocate(antiguoAncho, antiguoAlto, GL_RGB);    
+newTexture.allocate(nuevoAncho, nuevoAlto, GL_RGB);        
+fbo.allocate(nuevoAncho, nuevoAlto, GL_RGB, 0);
+
+...
+
+// redimensionado
+fbo.begin();
+texture.draw(0, 0, nuevoAncho, nuevoAlto); // tambien se puede dibujar la imagen mas grande para hacer un recorte
+fbo.end();
+fbo.readToPixels(pixeles);
+newTexture.loadData(pixeles.getPixels(), nuevoAncho, nuevoAlto, GL_RGB);
+</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">La gran ventaja de esta nueva estrategia es que la tarjeta gráfica esta diseñada para realizar este tipo de trabajo, por lo que el proceso resultará mucho mas eficiente. Pero además, podremos controlar la forma en que se calculan pixeles que antes simplemente duplicábamos o nos saltábamos, sin necesidad de hacer ningún trabajo, bastará indicarle previamente a la tarjeta gráfica el tipo de interpolaciones que queremos que haga con la textura que dibujemos.</span></p>
+<pre style="font-size: .8em;">texture.setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
+</pre>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../redimensionando-una-imagen/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>La sacerdotisa (background subtraction)</title>
+		<link>./../../../la-sacerdotisa-background-subtraction/index.html</link>
+					<comments>./../../../la-sacerdotisa-background-subtraction/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[Horacio]]></dc:creator>
+		<pubDate>Sun, 25 Jan 2015 16:01:19 +0000</pubDate>
+				<category><![CDATA[code]]></category>
+		<category><![CDATA[Cuerpo sin órganos]]></category>
+		<category><![CDATA[interactivos]]></category>
+		<category><![CDATA[OpenFrameworks]]></category>
+		<category><![CDATA[Previos]]></category>
+		<category><![CDATA[setup]]></category>
+		<category><![CDATA[Sin categoría]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[análisis]]></category>
+		<category><![CDATA[background subtraction]]></category>
+		<category><![CDATA[captura]]></category>
+		<category><![CDATA[fundamentos]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=924</guid>
+
+					<description><![CDATA[Dos columnas con las letras B y J grabadas a los laterales de la suma sacerdotisa, abren en el Tarot de Rider un interrogante y, a su vez, nos ofrecen algunas respuestas. ¿Por que somos capaces de reconocer a la sacerdotisa camuflada delante de un fondo tropical, complejo y exuberante, o de separar el huevo [...]]]></description>
+										<content:encoded><![CDATA[<p><a href="./../../../wp-content/uploads/2015/01/background-subtraction.png"><img decoding="async" class="alignnone wp-image-926 size-full" src="./../../../wp-content/uploads/2015/01/background-subtraction.png" alt="background-subtraction" width="640" height="541" srcset="./../../../wp-content/uploads/2015/01/background-subtraction.png 640w, ./../../../wp-content/uploads/2015/01/background-subtraction-300x253.png 300w" sizes="(max-width: 640px) 100vw, 640px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Dos columnas con las letras B y J grabadas a los laterales de la suma sacerdotisa, abren en el Tarot de Rider un interrogante y, a su vez, nos ofrecen algunas respuestas. ¿Por que somos capaces de reconocer a la sacerdotisa camuflada delante de un fondo tropical, complejo y exuberante, o de separar el huevo cósmico de la sacerdotisa con nuestra mirada? ¿Como identificamos y separamos los objetos del fondo al que pertenecen?</span></p>
+<p style="text-align: justify;"><a href="./../../../wp-content/uploads/2015/01/02-sacerdotisa.jpeg"><img decoding="async" class="alignnone wp-image-771" src="./../../../wp-content/uploads/2015/01/02-sacerdotisa.jpeg" alt="02-sacerdotisa" width="450" height="784" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Ambas columnas plantean a la vista una versión muy simplificada del problema; la columna negra de la izquierda ejerce como fondo oscuro que resalta una letra B dibujada en blanco, mientras que la columna blanca de la derecha ejerce como fondo claro que resalta una letra J dibujada en negro. Los valores de los pixeles de cada letra son opuestos, su valor intrínseco no es el que aporta información acerca de la composición de la imagen, sino su relación con los valores de los pixeles que están alrededor, se trata por lo tanto de un problema de detección de la continuidad y la diferencia, no de detección del color de una determinada zona como se planteó en el ejercicio 00.</span></p>
+<div style="width: 100%; height: 320px;"><a href="./../../../wp-content/uploads/2015/01/02-sacerdotisa-j.png"><img decoding="async" class="alignright wp-image-928 size-medium" src="./../../../wp-content/uploads/2015/01/02-sacerdotisa-j-200x300.png" alt="02-sacerdotisa-j" width="200" height="300" srcset="./../../../wp-content/uploads/2015/01/02-sacerdotisa-j-200x300.png 200w, ./../../../wp-content/uploads/2015/01/02-sacerdotisa-j.png 300w" sizes="(max-width: 200px) 100vw, 200px" /></a><a href="./../../../wp-content/uploads/2015/01/02-sacerdotisa-b.png"><img decoding="async" class="alignleft wp-image-927 size-medium" src="./../../../wp-content/uploads/2015/01/02-sacerdotisa-b-200x300.png" alt="02-sacerdotisa-b" width="200" height="300" srcset="./../../../wp-content/uploads/2015/01/02-sacerdotisa-b-200x300.png 200w, ./../../../wp-content/uploads/2015/01/02-sacerdotisa-b.png 300w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">La primera y mas elemental diferencia que podemos utilizar para interpretar una imagen, solamente podemos imaginarla en el Tarot, ya que las cartas son estáticas y nos muestran a cada personaje en un momento determinado. Se trata de la diferencia que se produce a lo largo del tiempo, entre un fotograma y el siguiente, cuando una cámara esta fija; la diferencia entre aquellos elementos que permanecen iguales a lo largo del tiempo y aquellos que cambian. Los objetos que nos interesan, por lo general, tienden estar en movimiento, mientras que el fondo y los objetos que non nos interesan suelen estar fijos. Midiendo la diferencia entre el valor de cada pixel, respecto al valor de su pixel correspondiente en una imagen de referencia tomada con anterioridad, podemos obtener una medida del cambio que se halla producido.<br />
+</span></p>
+<p><a href="./../../../wp-content/uploads/2015/01/background-sustraction.png"><img decoding="async" class="alignnone wp-image-929 size-large" src="./../../../wp-content/uploads/2015/01/background-sustraction-1024x460.png" alt="background-sustraction" width="1024" height="460" srcset="./../../../wp-content/uploads/2015/01/background-sustraction-1024x460.png 1024w, ./../../../wp-content/uploads/2015/01/background-sustraction-300x134.png 300w, ./../../../wp-content/uploads/2015/01/background-sustraction.png 1668w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p><span style="color: #4c4c4c;">Si pudiéramos comparar cada carta del Tarot con una imagen realizada antes de que su personaje entrase en escena, resultaría enormemente sencillo aislarlos y separarlos del fondo. Esta técnica es conocida precisamente como sustracción de fondo, porque basta con restar la imagen de fondo a la imagen original para obtener el resultado.</span></p>
+<p><a title="backgroundSubtraction - Github Alg-a" href="https://github.com/alg-a/herm3TICa/tree/master/exploracion%20pruebas%20y%20juegos/backgroundSubtraction" target="_blank">https://github.com/alg-a/herm3TICa/tree/master/exploracion pruebas y juegos/backgroundSubtraction</a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Volvamos al reto que nos proponen la B y la J en la carta de la sacerdotisa. Imaginemos sus respectivos fondos, ¿que sucederá cuando se los restemos a la imagen? Es relativamente sencillo imaginar lo que sucederá con la letra B, los tonos del fondo de esta letra son muy oscuros y sus valores se aproximarán bastante al 0, por lo que al restar valores cercanos al 0 a todos los pixeles de la imagen el resultado prácticamente no variará nada. Sin embargo la J tiene un fondo de tonos muy claros cuyos valores tenderán a aproximarse a 255, por lo que cuando restemos valores cercanos a 255 a todos los pixeles de la imagen obtendremos un valor cercano al 0 en los pixeles que sean muy claros y distintos valores negativos para todos los demás pixeles. </span></p>
+<p style="text-align: justify;"><a href="./../../../wp-content/uploads/2015/01/background-sustraction-2-b.png"><img decoding="async" class="alignnone wp-image-1075 size-full" src="./../../../wp-content/uploads/2015/01/background-sustraction-2-b.png" alt="background-sustraction-2-b" width="942" height="401" srcset="./../../../wp-content/uploads/2015/01/background-sustraction-2-b.png 942w, ./../../../wp-content/uploads/2015/01/background-sustraction-2-b-300x127.png 300w" sizes="(max-width: 942px) 100vw, 942px" /></a> <a href="./../../../wp-content/uploads/2015/01/background-sustraction-2-j.png"><img decoding="async" class="alignnone wp-image-1076 size-full" src="./../../../wp-content/uploads/2015/01/background-sustraction-2-j.png" alt="background-sustraction-2-j" width="944" height="401" srcset="./../../../wp-content/uploads/2015/01/background-sustraction-2-j.png 944w, ./../../../wp-content/uploads/2015/01/background-sustraction-2-j-300x127.png 300w" sizes="(max-width: 944px) 100vw, 944px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">¿Puede un pixel tener valores negativos? Nó, el resultado será una imagen negra o alguna sorpresa divertida si nuestro programa decide volver a contar desde 255 y restar a partir de ahí dicho valor negativo. Para hacer la sustracción de fondo necesitamos asignar un valor positivo a la diferencia entre la imagen y el fondo, por eso después de hacer la resta deberemos calcular su valor absoluto.</span></p>
+<p style="text-align: justify;"><a href="./../../../wp-content/uploads/2015/01/background-sustraction1.png"><img decoding="async" class="alignnone wp-image-1077 size-medium" src="./../../../wp-content/uploads/2015/01/background-sustraction1-300x111.png" alt="background-sustraction" width="300" height="111" srcset="./../../../wp-content/uploads/2015/01/background-sustraction1-300x111.png 300w, ./../../../wp-content/uploads/2015/01/background-sustraction1.png 751w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><a href="./../../../wp-content/uploads/2015/01/02-sacerdotisa-j-dif.png"><img decoding="async" class="alignnone wp-image-1078 size-medium" src="./../../../wp-content/uploads/2015/01/02-sacerdotisa-j-dif-200x300.png" alt="02-sacerdotisa-j-dif" width="200" height="300" srcset="./../../../wp-content/uploads/2015/01/02-sacerdotisa-j-dif-200x300.png 200w, ./../../../wp-content/uploads/2015/01/02-sacerdotisa-j-dif.png 300w" sizes="(max-width: 200px) 100vw, 200px" /></a></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../la-sacerdotisa-background-subtraction/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Contando pixeles.</title>
+		<link>./../../../contando-pixeles/index.html</link>
+		
+		<dc:creator><![CDATA[Horacio]]></dc:creator>
+		<pubDate>Sun, 11 Jan 2015 17:42:52 +0000</pubDate>
+				<category><![CDATA[code]]></category>
+		<category><![CDATA[Investigación]]></category>
+		<category><![CDATA[Máquina Abstracta]]></category>
+		<category><![CDATA[OpenFrameworks]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[bucles]]></category>
+		<category><![CDATA[fundamentos]]></category>
+		<category><![CDATA[iteración]]></category>
+		<category><![CDATA[pixeles]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=819</guid>
+
+					<description><![CDATA[Una de las tareas que realizaremos a menudo cuando trabajemos con video en openframeworks será recorrer la matriz de pixeles en la que se almacena cada fotograma procedente de la cámara o de la película que estemos reproduciendo. En openframeworks, dicha matriz no es bidimensional, sino que los valores RGB se almacenan, unos al lado [...]]]></description>
+										<content:encoded><![CDATA[<p style="text-align: justify;"><span style="color: #4c4c4c;">Una de las tareas que realizaremos a menudo cuando trabajemos con video en openframeworks será recorrer la matriz de pixeles en la que se almacena cada fotograma procedente de la cámara o de la película que estemos reproduciendo. En openframeworks, dicha matriz no es bidimensional, sino que los valores RGB se almacenan, unos al lado de los otros, en una larga lista.</span></p>
+<p><a href="./../../../wp-content/uploads/2015/01/carta-mago-00.png"><img decoding="async" class="alignnone wp-image-822 size-large" src="./../../../wp-content/uploads/2015/01/carta-mago-00-1024x62.png" alt="carta-mago-00" width="1024" height="62" srcset="./../../../wp-content/uploads/2015/01/carta-mago-00-1024x62.png 1024w, ./../../../wp-content/uploads/2015/01/carta-mago-00-300x18.png 300w, ./../../../wp-content/uploads/2015/01/carta-mago-00.png 1436w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Es importante recordar que, por cada pixel, en la lista se almacenan tres valores; uno para la luminosidad del color rojo, otro para la luminosidad del color verde, y otro para la luminosidad del color azul. Por lo tanto, cualquier matriz de pixeles que utilicemos procedente de una imagen RGB estará compuesta por un numero valores igual al total de pixeles multiplicado por 3.</span></p>
+<p><a href="./../../../wp-content/uploads/2015/01/carta-mago-01.png"><img decoding="async" class="alignnone wp-image-823 size-large" src="./../../../wp-content/uploads/2015/01/carta-mago-01-1024x62.png" alt="carta-mago-01" width="1024" height="62" srcset="./../../../wp-content/uploads/2015/01/carta-mago-01-1024x62.png 1024w, ./../../../wp-content/uploads/2015/01/carta-mago-01-300x18.png 300w, ./../../../wp-content/uploads/2015/01/carta-mago-01.png 1436w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Para recorrer la matriz y realizar operaciones en cada uno de los pixeles basta con hacer una, muy sencilla, iteración con un índice que nos permita ir del primer elemento de la lista hasta el último.</span></p>
+<pre style="font-size: .8em;">unsigned char * pixels = vidGrabber.getPixels();
+int totalPixels = camWidth * camHeight * 3;
+for (int i = 0; i &lt; totalPixels; i++) {
+	// do something with pixels[i]  ...
+}
+</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Sin embargo, en muchas ocasiones, será necesario conocer la posición X e Y da cada pixel en la imagen, como por ejemplo, cuando queramos cambiar su tamaño, trabajar en un fragmento de la misma o hacer operaciones basadas en líneas horizontales o verticales. En ese caso la solución mas directa consiste en trabajar como si la matriz de vídeo tuviese dos dimensiones y hacer dos iteraciones, con dos índices, uno que recorra la matriz a lo alto y otro que la recorra a lo ancho. De este modo, avanzaremos a través de la imagen, de línea horizontal en línea horizontal, empezando por la parte superior izquierda y acabando en la parte inferior derecha y, en cada punto de la iteración, los índices tomarán el valor de la posición X e Y de uno de los pixeles; con ellos, podremos calcular fácilmente la posición de dicho pixel en la lista.</span></p>
+<p><a href="./../../../wp-content/uploads/2015/01/lectura_pixeles_00.png"><img decoding="async" class="alignnone wp-image-830 size-large" src="./../../../wp-content/uploads/2015/01/lectura_pixeles_00-626x1024.png" alt="lectura_pixeles_00" width="626" height="1024" srcset="./../../../wp-content/uploads/2015/01/lectura_pixeles_00-626x1024.png 626w, ./../../../wp-content/uploads/2015/01/lectura_pixeles_00-183x300.png 183w, ./../../../wp-content/uploads/2015/01/lectura_pixeles_00.png 734w" sizes="(max-width: 626px) 100vw, 626px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Al igual que en el ejemplo anterior es importante recordar que por cada pixel se almacenan tres valores en la lista, por lo que el ancho de de una matriz de dos dimensiones en la que estuviese almacenada la imagen sería tres veces el ancho en pixeles de la imagen.</span></p>
+<pre style="font-size: .8em;">unsigned char * pixels = vidGrabber.getPixels();
+for (int y=0; y&lt;camHeight; y++) {
+	for (int x = 0; x &lt; (camWidth * 3); x++){
+		int position = y * (camWidth * 3) + x;
+		// do something with pixels[pos]  ...
+	}
+}
+</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Siguiendo la misma estrategia, en uno de los <a href="http://forum.openframeworks.cc/t/nested-iteration-over-all-pixels-of-ofxcvgrayscaleimage/14039">foros de openframeworks</a>, Arturo Castro propone simplificar el proceso utilizando un tercer índice para calcular de forma directa la posición en la lista.</span></p>
+<pre style="font-size: .8em;">unsigned char * pixels = vidGrabber.getPixels();
+int i = 0;
+for (int y=0; y&lt;camHeight; y++) {
+	for (int x = 0; x &lt; (camWidth * 3); x++, i++){
+		// do something with pixels[i]  ...
+	}
+}
+</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">La opción propuesta por Arturo Castro es extraordinariamente elegante, pero en los ejemplos de herm3TICa, a menudo, utilizaremos una estrategia diferente sugerida por Emanuele Mazza, que permite reducir el número de iteraciones haciendo algunas matemáticas. Consiste en utilizar un operador llamado módulo <em>%</em>, que devuelve el resto de una división con números enteros, para calcular la posición X e Y de cada pixel partiendo de su índice.</span></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Si recorremos la matriz a través de un único índice, como en el primer ejemplo, y en cada iteración calculamos el resto de la división de dicho índice entre el ancho de la matriz utilizando el operador módulo, el resto equivaldrá la posición X de cada pixel. Del mismo modo si calculamos la división con números enteros del índice entre el ancho de la matriz, restando previamente ese resto al índice, el resultado equivaldrá la posición Y de cada pixel. </span></p>
+<pre style="font-size: .8em;">unsigned char * pixels = vidGrabber.getPixels();
+int totalPixels = camWidth * camHeight * 3;
+for (int i=0; i&lt;totalPixels; i++) {
+	int x = i % (camWidth * 3);
+	int y = (i - x) / (camWidth * 3);
+	// do something with pixels[i]  ...
+}
+</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">La lógica de la operación es mucho mas sencilla de lo que aparenta; por cada línea que recorremos, avanzamos un total de valores igual al ancho de la supuesta matriz bidimensional. </span></p>
+<p><a href="./../../../wp-content/uploads/2015/01/lectura_pixeles_01.png"><img decoding="async" class="alignnone wp-image-825 size-large" src="./../../../wp-content/uploads/2015/01/lectura_pixeles_01-1024x75.png" alt="lectura_pixeles_01" width="1024" height="75" srcset="./../../../wp-content/uploads/2015/01/lectura_pixeles_01-1024x75.png 1024w, ./../../../wp-content/uploads/2015/01/lectura_pixeles_01-300x22.png 300w, ./../../../wp-content/uploads/2015/01/lectura_pixeles_01.png 1458w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;"><span style="color: #4c4c4c;">Si, por ejemplo, estamos al principio de la tercera línea, habremos avanzado dos veces el ancho de la matriz y el resultado de la división del índice entre el ancho matriz deberá ser dos. Sin embargo nos encontramos en la tercera línea, ¿por que? En realidad la tercera línea es la número dos ya que, al igual que en el Tarot, comenzamos a contar a partir del 0, es decir, contamos las líneas que hemos recorrido, no la línea en la que estamos. La primera línea, la línea 0, es la línea en la que todavía no hemos recorrido ninguna otra línea</span>.</span></p>
+<p><a href="./../../../wp-content/uploads/2015/01/lectura_pixeles_02.png"><img decoding="async" class="alignnone wp-image-826 size-large" src="./../../../wp-content/uploads/2015/01/lectura_pixeles_02-1024x75.png" alt="lectura_pixeles_02" width="1024" height="75" srcset="./../../../wp-content/uploads/2015/01/lectura_pixeles_02-1024x75.png 1024w, ./../../../wp-content/uploads/2015/01/lectura_pixeles_02-300x22.png 300w, ./../../../wp-content/uploads/2015/01/lectura_pixeles_02.png 1458w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">En el ejemplo de la imagen si dividimos el índice, 14, entre 7 el resultado es 2 y el resto cero, por lo que el índice 14 se encuentra la posición 0 de la segunda línea.</span></p>
+<p><a href="./../../../wp-content/uploads/2015/01/lectura_pixeles_04.png"><img decoding="async" class="alignnone wp-image-828 size-large" src="./../../../wp-content/uploads/2015/01/lectura_pixeles_04-626x1024.png" alt="lectura_pixeles_04" width="626" height="1024" srcset="./../../../wp-content/uploads/2015/01/lectura_pixeles_04-626x1024.png 626w, ./../../../wp-content/uploads/2015/01/lectura_pixeles_04-183x300.png 183w, ./../../../wp-content/uploads/2015/01/lectura_pixeles_04.png 734w" sizes="(max-width: 626px) 100vw, 626px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Por el contrario, si la división del índice entre el ancho de la matriz no es exacta, quiere decir que todavía no hemos alcanzado el final de una de las líneas. En ese caso el valor entero de la división corresponde al número de líneas que ya hemos avanzado y el resto el lugar por el que vamos en la línea que no hemos acabado.<br />
+</span></p>
+<p><a href="./../../../wp-content/uploads/2015/01/lectura_pixeles_03.png"><img decoding="async" class="alignnone wp-image-827 size-large" src="./../../../wp-content/uploads/2015/01/lectura_pixeles_03-1024x75.png" alt="lectura_pixeles_03" width="1024" height="75" srcset="./../../../wp-content/uploads/2015/01/lectura_pixeles_03-1024x75.png 1024w, ./../../../wp-content/uploads/2015/01/lectura_pixeles_03-300x22.png 300w, ./../../../wp-content/uploads/2015/01/lectura_pixeles_03.png 1458w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;"><span style="color: #4c4c4c;">En el ejemplo de la imagen si dividimos el índice, 8, entre 7 </span>el resultado es 1 y el resto 1, por lo que el índice 8 se encuentra en la segunda posición de la segunda línea.</span></p>
+<p><a href="./../../../wp-content/uploads/2015/01/lectura_pixeles_05.png"><img decoding="async" class="alignnone wp-image-829 size-large" src="./../../../wp-content/uploads/2015/01/lectura_pixeles_05-626x1024.png" alt="lectura_pixeles_05" width="626" height="1024" srcset="./../../../wp-content/uploads/2015/01/lectura_pixeles_05-626x1024.png 626w, ./../../../wp-content/uploads/2015/01/lectura_pixeles_05-183x300.png 183w, ./../../../wp-content/uploads/2015/01/lectura_pixeles_05.png 734w" sizes="(max-width: 626px) 100vw, 626px" /></a></p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>El mago (áreas de activación)</title>
+		<link>./../../../el-mago-areas-de-activacion/index.html</link>
+					<comments>./../../../el-mago-areas-de-activacion/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[Horacio]]></dc:creator>
+		<pubDate>Fri, 09 Jan 2015 21:58:10 +0000</pubDate>
+				<category><![CDATA[interactivos]]></category>
+		<category><![CDATA[Investigación]]></category>
+		<category><![CDATA[Máquina Abstracta]]></category>
+		<category><![CDATA[OpenFrameworks]]></category>
+		<category><![CDATA[Previos]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[botón]]></category>
+		<category><![CDATA[captura]]></category>
+		<category><![CDATA[code]]></category>
+		<category><![CDATA[fundamentos]]></category>
+		<category><![CDATA[interacción]]></category>
+		<category><![CDATA[trigger area]]></category>
+		<category><![CDATA[video]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=761</guid>
+
+					<description><![CDATA[(…) el Mago arroja los 4 elementos; con los que puede hacer cualquier cosa imaginable; el infinito sobre su cabeza. Sin embargo, sin que nos demos cuenta, es el propio Mago quien sostiene la mesa con su pierna en la pata que falta (…) Como principio mínimo de infinitas posibilidades es el dígito binario de [...]]]></description>
+										<content:encoded><![CDATA[<p style="text-align: justify;"><span style="color: #4c4c4c;"><em>(…) el Mago arroja los 4 elementos; con los que puede hacer cualquier cosa imaginable; el infinito sobre su cabeza. Sin embargo, sin que nos demos cuenta, es el propio Mago quien sostiene la mesa con su pierna en la pata que falta (…)</em> </span></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Como principio mínimo de infinitas posibilidades es el dígito binario de la interacción, una ventana de posibilidades, un desencadenante, un activador; para nosotros, el comienzo.</span></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Video, captura de movimiento e interacción.</span></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Imaginemos que un fragmento de la imagen de vídeo fuese capaz de activar un proceso o interrumpirlo, en función de la luminosidad de los pixeles que albergase. Ese fragmento de la imagen, al que llamaremos el área de activación, se comportaría como un botón que podríamos pulsar interponiendo nuestro cuerpo entre el fondo del espacio grabado y la cámara, de forma que modifiquemos la luminosidad de los pixeles contenidos en dicha área.</span></p>
+<p><a href="./../../../wp-content/uploads/2015/01/trigger-area.png"><img decoding="async" class="alignnone wp-image-811 size-large" src="./../../../wp-content/uploads/2015/01/trigger-area-1024x140.png" alt="trigger-area" width="1024" height="140" srcset="./../../../wp-content/uploads/2015/01/trigger-area-1024x140.png 1024w, ./../../../wp-content/uploads/2015/01/trigger-area-300x41.png 300w, ./../../../wp-content/uploads/2015/01/trigger-area.png 1478w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Las áreas de activación son como los <i>buquets</i> de un sensor de una cámara digital, acumulan energía procedente de la luz, en este caso, almacenan la suma de los valores de luminosidad de los pixeles que albergan. Haciendo una media de todos los valores acumulados [ total / nº de pixeles ] podemos conocer la luminosidad media de la zona y establecer un umbral por encima del cual consideramos el área llena o por debajo del cual la consideramos vacía, asignando así un valor lógico [ boolean ] a la misma. El área se transforma, de este modo, en un botón que está encendido o apagado y que puede enviar datos cuando cambia de estado, si así lo decidimos, activándola o desactivándola.</span></p>
+<p><a title="TriggerAreas - Github Alg-a" href="https://github.com/alg-a/herm3TICa/tree/master/exploracion%20pruebas%20y%20juegos/triggerAreas" target="_blank">https://github.com/alg-a/herm3TICa/tree/master/exploracion pruebas y juegos/triggerAreas</a></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../el-mago-areas-de-activacion/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comentarios en: directo	</title>
+	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
+	<link>./../../index.html</link>
+	<description>Cámaras, sensores y telepresencia</description>
+	<lastBuildDate>Sun, 01 Mar 2015 10:35:30 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2</generator>
+	<item>
+		<title>
+		Por: ACTIVIDADES DE LA USC HOY Mércores, 18 d &#124; Universidad Santiago de Compostela--USC		</title>
+		<link>./../index.html#comment-18</link>
+
+		<dc:creator><![CDATA[ACTIVIDADES DE LA USC HOY Mércores, 18 d &#124; Universidad Santiago de Compostela--USC]]></dc:creator>
+		<pubDate>Wed, 18 Feb 2015 07:30:33 +0000</pubDate>
+		<guid isPermaLink="false">./../../index.html?page_id=996#comment-18</guid>
+
+					<description><![CDATA[[&#8230;] Educación (Santiago) 11.00 &#8211; Primeiras escenas do Tar0t Esquizoan4lisis. Proxecto Herm3tica ./../index.html 12.30 &#8211; Sinatura de convenio entre USC e Fundación Vodafone e presentación da [&#8230;]]]></description>
+			<content:encoded><![CDATA[<p>[&#8230;] Educación (Santiago) 11.00 &#8211; Primeiras escenas do Tar0t Esquizoan4lisis. Proxecto Herm3tica <a href="./../index.html" rel="ugc">./../index.html</a> 12.30 &#8211; Sinatura de convenio entre USC e Fundación Vodafone e presentación da [&#8230;]</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: herm3TICa &#124; EspacioNido		</title>
+		<link>./../index.html#comment-16</link>
+
+		<dc:creator><![CDATA[herm3TICa &#124; EspacioNido]]></dc:creator>
+		<pubDate>Tue, 17 Feb 2015 18:33:58 +0000</pubDate>
+		<guid isPermaLink="false">./../../index.html?page_id=996#comment-16</guid>
+
+					<description><![CDATA[[&#8230;] 16h a 18h, así que podréis acercaros. Todas las retransmisiones podrás seguirlas desde la URL ./.././index.html Además de en Espacio Nido, también lo podréis seguir desde CGAC, A Nave de Vidán, [&#8230;]]]></description>
+			<content:encoded><![CDATA[<p>[&#8230;] 16h a 18h, así que podréis acercaros. Todas las retransmisiones podrás seguirlas desde la URL ./.././index.html Además de en Espacio Nido, también lo podréis seguir desde CGAC, A Nave de Vidán, [&#8230;]</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Caosmos &#8211; herm3TICa</title>
+	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
+	<link>./../../../../index.html</link>
+	<description>Cámaras, sensores y telepresencia</description>
+	<lastBuildDate>Sun, 08 Feb 2015 17:16:28 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2</generator>
+	<item>
+		<title>Un viaje irreversible</title>
+		<link>./../../../../un-viaje-irreversible/index.html</link>
+					<comments>./../../../../un-viaje-irreversible/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[man2hauser]]></dc:creator>
+		<pubDate>Fri, 28 Nov 2014 22:10:08 +0000</pubDate>
+				<category><![CDATA[Caosmos]]></category>
+		<category><![CDATA[Imaginarios]]></category>
+		<category><![CDATA[Previos]]></category>
+		<guid isPermaLink="false">./../../../../index.html?p=653</guid>
+
+					<description><![CDATA[El tar0t no es tanto una ciencia adivinatoria, sino más un viaje al interior de un@ mism@ y al interior del tiempo; y su relación con los demás, con el mundo, con nuestra líbido y nuestra energía creativa. Es como veremos un viaje irreversible, en el que los pasos y las decisiones tomadas en cada [...]]]></description>
+										<content:encoded><![CDATA[<p>El tar0t no es tanto una ciencia adivinatoria, sino más un viaje al interior de un@ mism@ y al interior del tiempo; y su relación con los demás, con el mundo, con nuestra líbido y nuestra energía creativa. Es como veremos un viaje irreversible, en el que los pasos y las decisiones tomadas en cada momento determinan las posibilidades futuras; pero más que como un límite, deberíamos verlo como un posibilitador de experiencias. A continuación Jodorowsky, especialista en el tema, nos explica su experiencia.</p>
+<p><iframe width="560" height="315" src="//www.youtube.com/embed/YXg1RaaMKho" frameborder="0" allowfullscreen></iframe></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../../un-viaje-irreversible/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

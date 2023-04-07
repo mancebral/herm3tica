@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Teatro de la Crueldad &#8211; herm3TICa</title>
+	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
+	<link>./../../../index.html</link>
+	<description>Cámaras, sensores y telepresencia</description>
+	<lastBuildDate>Sun, 01 Feb 2015 12:20:28 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2</generator>
+	<item>
+		<title>Teatro de la Crueldad &#124; Formulario del proyecto</title>
+		<link>./../../../teatro-de-la-crueldad/index.html</link>
+					<comments>./../../../teatro-de-la-crueldad/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[man2hauser]]></dc:creator>
+		<pubDate>Sun, 01 Feb 2015 11:32:22 +0000</pubDate>
+				<category><![CDATA[Cartas]]></category>
+		<category><![CDATA[Evaluación]]></category>
+		<category><![CDATA[Off Air]]></category>
+		<category><![CDATA[Poetry Slam Mallorca]]></category>
+		<category><![CDATA[tar0t esquizoan4lisis]]></category>
+		<category><![CDATA[Teatro de la Crueldad]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=1044</guid>
+
+					<description><![CDATA[Como en un espacio intermedio, entre los Arcanos VIII y XV, es decir, entre la Justicia y el Diablo, o entre la Evaluación y el Off Air del proyecto, proponemos un Teatro de la Crueldad, donde al mismo tiempo que comentamos, asesoramos, opinamos, etc. ironizamos también, criticamos, permitimos una narrativa lo más satírica y cínica [...]]]></description>
+										<content:encoded><![CDATA[<p style="text-align: justify;">Como en un espacio intermedio, entre los <strong>Arcanos VIII</strong> y <strong>XV</strong>, es decir, entre <strong>la Justicia</strong> y <strong>el Diablo</strong>, o entre la <a title="Evaluación" href="./../../../evaluacion/index.html"><strong>Evaluación</strong></a> y el <a title="Off Air" href="./../../../off-air/index.html"><strong>Off Air</strong></a> del proyecto, proponemos un <a title="Formulario del proyecto" href="./../../../formulario-del-proyecto/index.html"><strong>Teatro de la Crueldad</strong></a>, donde al mismo tiempo que comentamos, asesoramos, opinamos, etc. ironizamos también, criticamos, permitimos una narrativa lo más satírica y cínica posible. De algún modo ése es el <strong>Arcano del Diablo</strong>: si nosotr@s lo planteamos como Off Air es precisamente en este sentido: el de llevar a ras de suelo todas las aspiraciones e idealizaciones del proyecto, más allá incluso, a su inframundo, mirar su lado oscuro, las cosas que no funcionan, sus absurdos y sinsentidos, buscarlos, localizarlos, permitir explicitarlos.</p>
+<p style="text-align: justify;"><strong>Con el acceso a este formulario (<a title="Formulario del proyecto" href="./../../../formulario-del-proyecto/index.html">Formulario del Proyecto</a>)</strong> queremos abrir la posibilidad de difundir y mostrar la arquitectura teórica del proyecto, no esconderla, sino servirla a debate al mismo tiempo. Así, abordamos las siguientes cuestiones:</p>
+<ul>
+<li style="text-align: justify;"><strong>Psicoanálisis y Esquizoanálisis</strong></li>
+<li style="text-align: justify;"><strong>Tecnología y Sociedad</strong></li>
+<li style="text-align: justify;"><strong>Tar0t y Proyecto herm3TICa</strong></li>
+</ul>
+<p style="text-align: justify;">Como dice el propio Artaud, la crueldad no consiste precisamente en una muestra del dolor, o una explicitación del mismo. En eso consistía, por el contrario, la tortura medieval, como garantía y espectáculo del poder despótico (<strong>Foucault, <em>Vigilar y Castigar</em></strong>). En vez de ello, una <em>crueldad metafísica</em>, un reto, a vida o muerte, por llevar a escena el espíritu, aún con el riesgo de la crítica y la sátira, de la segura descomposición de nuestro Yo y nuestro ideal, un teatro como ritual, que afronte estas nuestras miserias psicológicas y metafísicas, que explicite este vacío y reclame su potencia.</p>
+<p style="text-align: justify; padding-left: 30px;">&#8220;<em>Lo advierta o no, consciente o inconscientemente, lo que el público busca fundamentalmente en el amor, el crimen, las drogas, la insurrección, la guerra, es el estado poético, un estado trascendente de vida. El Teatro de la Crueldad ha sido creado para devolver al teatro una concepción de la vida apasionada y convulsiva; y en ese sentido de violento rigor, de extrema condensación de los elementos escénicos, ha de entenderse la crueldad de este teatro</em>&#8220;. <strong>Antonin Artaud. <em>El Teatro de la Crueldad. Segundo Manifiesto.</em></strong></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../teatro-de-la-crueldad/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

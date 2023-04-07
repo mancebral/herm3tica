@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>setup &#8211; herm3TICa</title>
+	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
+	<link>./../../../index.html</link>
+	<description>Cámaras, sensores y telepresencia</description>
+	<lastBuildDate>Thu, 12 Feb 2015 19:06:27 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2</generator>
+	<item>
+		<title>Set up de conexiones</title>
+		<link>./../../../set-up-de-conexiones/index.html</link>
+					<comments>./../../../set-up-de-conexiones/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[man2hauser]]></dc:creator>
+		<pubDate>Wed, 11 Feb 2015 13:20:53 +0000</pubDate>
+				<category><![CDATA[Previos]]></category>
+		<category><![CDATA[setup]]></category>
+		<category><![CDATA[streaming]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=1160</guid>
+
+					<description><![CDATA[Además de nuestro set up de proyecciones, así como de la configuración de las aplicaciones, las escenas con sus pautas y la disposición de la propia sala (iluminación, cámaras, sonido, etc.) es clave la disposición y uso de las diferentes sources y su gestión en directo, así como las correspondientes salidas. También explicitamos el modo [...]]]></description>
+										<content:encoded><![CDATA[<p style="text-align: justify;">Además de <a title="Set up de proyecciones" href="./../../../set-up-de-proyecciones/index.html"><strong>nuestro set up de proyecciones</strong></a>, así como de la configuración de las aplicaciones, las escenas con sus pautas y la disposición de la propia sala (iluminación, cámaras, sonido, etc.) es clave la disposición y uso de las diferentes <strong><em>sources</em> </strong>y su gestión en directo, así como las correspondientes salidas. También explicitamos el modo en que controlamos las mismas y los formatos de salida y compresión. El corazón de este sistema es el hardware <a title="Mixer de video | ATEM TV" href="./../../../mixer-video/index.html"><strong>ATEM Studio</strong></a> que ya os presentamos hace unos días.</p>
+<p style="text-align: justify;"><a href="./../../../wp-content/uploads/2015/02/SETUP_sources.001.jpg"><img decoding="async" class="alignnone wp-image-1161 size-full" src="./../../../wp-content/uploads/2015/02/SETUP_sources.001.jpg" alt="SETUP_sources.001" width="1024" height="768" srcset="./../../../wp-content/uploads/2015/02/SETUP_sources.001.jpg 1024w, ./../../../wp-content/uploads/2015/02/SETUP_sources.001-300x225.jpg 300w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<h3>INPUTS</h3>
+<ul>
+<li class="p1" style="text-align: justify;"><span class="s1"><b>COMPUTADORA 01: </b></span>Carga las aplicaciones of1 y of3 que reciben datos de imagen procesadas por of2 (COMPUTADORA 02) para afectar imágenes y vídeos previos o grabados. También tienen input de webcam pero con menor procesamiento de imagen.</li>
+<li class="p1" style="text-align: justify;"><b>COMPUTADORA 02: </b>Carga la aplicación of2 que se conecta con la trabaja con datos provinientes de webcam para procesamiento de imagen, tracking video, substracción de fondo, detección de bordes, etc.</li>
+<li class="p1" style="text-align: justify;"><b>COMPUTADORA 03:</b> Edición de textos y transiciones en tiempo real mediante <em>vjing</em>, puede incluir una webcam panorámica que nos dé un plano general de la escena.</li>
+<li class="p1" style="text-align: justify;"><b>CÁMARA HDMI: </b>Nos da un pounto de vista generalmente móvil e interno a la escena rescatando detalles y planos insertos en los movimientos escénicos, con encuadres más artísticos y &#8220;aberrantes&#8221;. Se corresponde con el Arcano 09: &#8220;cámara subjetiva”.</li>
+</ul>
+<h3><strong>OUTPUTS</strong></h3>
+<ul>
+<li class="p1" style="text-align: justify;"><span class="s1"><b>STREAMING: </b></span>Salida directa a streaming en HD 1920 x 1080i comprimido en h264 con la realización en directo de las 4 entradas hdmi.</li>
+<li class="p1" style="text-align: justify;"><span class="s1"><b>MULTIVIEWER: </b></span>Monitorización de las entradas, previos y directos</li>
+<li class="p1" style="text-align: justify;"><b>PROGRAMM: </b>Visualización en local de la salida de streaming permitiendo a l@s performers y demás asistentes conocer el resultado de la retransmisión. También nos permite esta salida grabar en alta calidad.</li>
+<li class="p1" style="text-align: justify;"><span class="s1"><b>CONTROLADOR: </b></span>Switch de cámaras y previos conectado mediante ethernet a otra computadora a mayores dedicada a manejar esta sencilla aplicación</li>
+</ul>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../set-up-de-conexiones/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>La sacerdotisa (background subtraction)</title>
+		<link>./../../../la-sacerdotisa-background-subtraction/index.html</link>
+					<comments>./../../../la-sacerdotisa-background-subtraction/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[Horacio]]></dc:creator>
+		<pubDate>Sun, 25 Jan 2015 16:01:19 +0000</pubDate>
+				<category><![CDATA[code]]></category>
+		<category><![CDATA[Cuerpo sin órganos]]></category>
+		<category><![CDATA[interactivos]]></category>
+		<category><![CDATA[OpenFrameworks]]></category>
+		<category><![CDATA[Previos]]></category>
+		<category><![CDATA[setup]]></category>
+		<category><![CDATA[Sin categoría]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[análisis]]></category>
+		<category><![CDATA[background subtraction]]></category>
+		<category><![CDATA[captura]]></category>
+		<category><![CDATA[fundamentos]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=924</guid>
+
+					<description><![CDATA[Dos columnas con las letras B y J grabadas a los laterales de la suma sacerdotisa, abren en el Tarot de Rider un interrogante y, a su vez, nos ofrecen algunas respuestas. ¿Por que somos capaces de reconocer a la sacerdotisa camuflada delante de un fondo tropical, complejo y exuberante, o de separar el huevo [...]]]></description>
+										<content:encoded><![CDATA[<p><a href="./../../../wp-content/uploads/2015/01/background-subtraction.png"><img decoding="async" class="alignnone wp-image-926 size-full" src="./../../../wp-content/uploads/2015/01/background-subtraction.png" alt="background-subtraction" width="640" height="541" srcset="./../../../wp-content/uploads/2015/01/background-subtraction.png 640w, ./../../../wp-content/uploads/2015/01/background-subtraction-300x253.png 300w" sizes="(max-width: 640px) 100vw, 640px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Dos columnas con las letras B y J grabadas a los laterales de la suma sacerdotisa, abren en el Tarot de Rider un interrogante y, a su vez, nos ofrecen algunas respuestas. ¿Por que somos capaces de reconocer a la sacerdotisa camuflada delante de un fondo tropical, complejo y exuberante, o de separar el huevo cósmico de la sacerdotisa con nuestra mirada? ¿Como identificamos y separamos los objetos del fondo al que pertenecen?</span></p>
+<p style="text-align: justify;"><a href="./../../../wp-content/uploads/2015/01/02-sacerdotisa.jpeg"><img decoding="async" class="alignnone wp-image-771" src="./../../../wp-content/uploads/2015/01/02-sacerdotisa.jpeg" alt="02-sacerdotisa" width="450" height="784" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Ambas columnas plantean a la vista una versión muy simplificada del problema; la columna negra de la izquierda ejerce como fondo oscuro que resalta una letra B dibujada en blanco, mientras que la columna blanca de la derecha ejerce como fondo claro que resalta una letra J dibujada en negro. Los valores de los pixeles de cada letra son opuestos, su valor intrínseco no es el que aporta información acerca de la composición de la imagen, sino su relación con los valores de los pixeles que están alrededor, se trata por lo tanto de un problema de detección de la continuidad y la diferencia, no de detección del color de una determinada zona como se planteó en el ejercicio 00.</span></p>
+<div style="width: 100%; height: 320px;"><a href="./../../../wp-content/uploads/2015/01/02-sacerdotisa-j.png"><img decoding="async" class="alignright wp-image-928 size-medium" src="./../../../wp-content/uploads/2015/01/02-sacerdotisa-j-200x300.png" alt="02-sacerdotisa-j" width="200" height="300" srcset="./../../../wp-content/uploads/2015/01/02-sacerdotisa-j-200x300.png 200w, ./../../../wp-content/uploads/2015/01/02-sacerdotisa-j.png 300w" sizes="(max-width: 200px) 100vw, 200px" /></a><a href="./../../../wp-content/uploads/2015/01/02-sacerdotisa-b.png"><img decoding="async" class="alignleft wp-image-927 size-medium" src="./../../../wp-content/uploads/2015/01/02-sacerdotisa-b-200x300.png" alt="02-sacerdotisa-b" width="200" height="300" srcset="./../../../wp-content/uploads/2015/01/02-sacerdotisa-b-200x300.png 200w, ./../../../wp-content/uploads/2015/01/02-sacerdotisa-b.png 300w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">La primera y mas elemental diferencia que podemos utilizar para interpretar una imagen, solamente podemos imaginarla en el Tarot, ya que las cartas son estáticas y nos muestran a cada personaje en un momento determinado. Se trata de la diferencia que se produce a lo largo del tiempo, entre un fotograma y el siguiente, cuando una cámara esta fija; la diferencia entre aquellos elementos que permanecen iguales a lo largo del tiempo y aquellos que cambian. Los objetos que nos interesan, por lo general, tienden estar en movimiento, mientras que el fondo y los objetos que non nos interesan suelen estar fijos. Midiendo la diferencia entre el valor de cada pixel, respecto al valor de su pixel correspondiente en una imagen de referencia tomada con anterioridad, podemos obtener una medida del cambio que se halla producido.<br />
+</span></p>
+<p><a href="./../../../wp-content/uploads/2015/01/background-sustraction.png"><img decoding="async" class="alignnone wp-image-929 size-large" src="./../../../wp-content/uploads/2015/01/background-sustraction-1024x460.png" alt="background-sustraction" width="1024" height="460" srcset="./../../../wp-content/uploads/2015/01/background-sustraction-1024x460.png 1024w, ./../../../wp-content/uploads/2015/01/background-sustraction-300x134.png 300w, ./../../../wp-content/uploads/2015/01/background-sustraction.png 1668w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p><span style="color: #4c4c4c;">Si pudiéramos comparar cada carta del Tarot con una imagen realizada antes de que su personaje entrase en escena, resultaría enormemente sencillo aislarlos y separarlos del fondo. Esta técnica es conocida precisamente como sustracción de fondo, porque basta con restar la imagen de fondo a la imagen original para obtener el resultado.</span></p>
+<p><a title="backgroundSubtraction - Github Alg-a" href="https://github.com/alg-a/herm3TICa/tree/master/exploracion%20pruebas%20y%20juegos/backgroundSubtraction" target="_blank">https://github.com/alg-a/herm3TICa/tree/master/exploracion pruebas y juegos/backgroundSubtraction</a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Volvamos al reto que nos proponen la B y la J en la carta de la sacerdotisa. Imaginemos sus respectivos fondos, ¿que sucederá cuando se los restemos a la imagen? Es relativamente sencillo imaginar lo que sucederá con la letra B, los tonos del fondo de esta letra son muy oscuros y sus valores se aproximarán bastante al 0, por lo que al restar valores cercanos al 0 a todos los pixeles de la imagen el resultado prácticamente no variará nada. Sin embargo la J tiene un fondo de tonos muy claros cuyos valores tenderán a aproximarse a 255, por lo que cuando restemos valores cercanos a 255 a todos los pixeles de la imagen obtendremos un valor cercano al 0 en los pixeles que sean muy claros y distintos valores negativos para todos los demás pixeles. </span></p>
+<p style="text-align: justify;"><a href="./../../../wp-content/uploads/2015/01/background-sustraction-2-b.png"><img decoding="async" class="alignnone wp-image-1075 size-full" src="./../../../wp-content/uploads/2015/01/background-sustraction-2-b.png" alt="background-sustraction-2-b" width="942" height="401" srcset="./../../../wp-content/uploads/2015/01/background-sustraction-2-b.png 942w, ./../../../wp-content/uploads/2015/01/background-sustraction-2-b-300x127.png 300w" sizes="(max-width: 942px) 100vw, 942px" /></a> <a href="./../../../wp-content/uploads/2015/01/background-sustraction-2-j.png"><img decoding="async" class="alignnone wp-image-1076 size-full" src="./../../../wp-content/uploads/2015/01/background-sustraction-2-j.png" alt="background-sustraction-2-j" width="944" height="401" srcset="./../../../wp-content/uploads/2015/01/background-sustraction-2-j.png 944w, ./../../../wp-content/uploads/2015/01/background-sustraction-2-j-300x127.png 300w" sizes="(max-width: 944px) 100vw, 944px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">¿Puede un pixel tener valores negativos? Nó, el resultado será una imagen negra o alguna sorpresa divertida si nuestro programa decide volver a contar desde 255 y restar a partir de ahí dicho valor negativo. Para hacer la sustracción de fondo necesitamos asignar un valor positivo a la diferencia entre la imagen y el fondo, por eso después de hacer la resta deberemos calcular su valor absoluto.</span></p>
+<p style="text-align: justify;"><a href="./../../../wp-content/uploads/2015/01/background-sustraction1.png"><img decoding="async" class="alignnone wp-image-1077 size-medium" src="./../../../wp-content/uploads/2015/01/background-sustraction1-300x111.png" alt="background-sustraction" width="300" height="111" srcset="./../../../wp-content/uploads/2015/01/background-sustraction1-300x111.png 300w, ./../../../wp-content/uploads/2015/01/background-sustraction1.png 751w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><a href="./../../../wp-content/uploads/2015/01/02-sacerdotisa-j-dif.png"><img decoding="async" class="alignnone wp-image-1078 size-medium" src="./../../../wp-content/uploads/2015/01/02-sacerdotisa-j-dif-200x300.png" alt="02-sacerdotisa-j-dif" width="200" height="300" srcset="./../../../wp-content/uploads/2015/01/02-sacerdotisa-j-dif-200x300.png 200w, ./../../../wp-content/uploads/2015/01/02-sacerdotisa-j-dif.png 300w" sizes="(max-width: 200px) 100vw, 200px" /></a></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../la-sacerdotisa-background-subtraction/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Set up de proyecciones</title>
+		<link>./../../../set-up-de-proyecciones/index.html</link>
+					<comments>./../../../set-up-de-proyecciones/index.html#comments</comments>
+		
+		<dc:creator><![CDATA[man2hauser]]></dc:creator>
+		<pubDate>Wed, 14 Jan 2015 16:12:41 +0000</pubDate>
+				<category><![CDATA[Investigación]]></category>
+		<category><![CDATA[OpenFrameworks]]></category>
+		<category><![CDATA[Previos]]></category>
+		<category><![CDATA[setup]]></category>
+		<category><![CDATA[streaming]]></category>
+		<category><![CDATA[app]]></category>
+		<category><![CDATA[cámara obscura]]></category>
+		<category><![CDATA[OSC]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=853</guid>
+
+					<description><![CDATA[Diagrama de la escenografía que diseñamos para el Laboratorio herm3TICo de performance, durante nuestra primera residencia en Alg-a Lab. La idea es utilizar tres proyecciones con sus correspondientes aplicaciones de openFrameworks (en adelante of1, of2, of3) comunicadas via OSC, que ofrezcan tres puntos de vista distintos sobre lo que está sucediendo (el espejo, la interface [...]]]></description>
+										<content:encoded><![CDATA[<p style="text-align: justify;">Diagrama de la escenografía que diseñamos para el <strong>Laboratorio herm3TICo de performance</strong>, durante nuestra primera residencia en <strong>Alg-a Lab</strong>. La idea es utilizar tres proyecciones con sus correspondientes <strong>aplicaciones de openFrameworks</strong> (en adelante <strong>of1, of2, of3</strong>) comunicadas <strong>via OSC</strong>, que ofrezcan tres puntos de vista distintos sobre lo que está sucediendo (<strong>el espejo, la interface de análisisis y la narrativa</strong>, en este caso). A partir de aquí, hemos reorganizado la estructura del <a title="Github Alg-a" href="http://github.com/alg-a"><strong>repositorio Github</strong></a> del proyecto en función de esta estructura dejando sólo en la raíz una carpeta para cada una de las aplicaciones, una carpeta a mayores para todo lo que esté relacionado con el <strong>streaming</strong> y por último otra con el nombre de &#8220;exploración pruebas y juegos&#8221; como espacio más diáfano de experimentación. Esta sería la función y uso de cada una de las aplicaciones:</p>
+<p style="text-align: justify;"><span style="color: #ff33b1;"><strong>of1: espejo: </strong></span>que ofrece un reflejo directo del cuerpo del performer como feedback para la exploración. Aplicación que muestra la imagen de una webcam invertida de derecha a izquierda y permite las siguientes opciones:</p>
+<ul>
+<li style="text-align: justify;">Ajustes de contraste y tono para controlar la estética de la imagen</li>
+<li style="text-align: justify;">Gravar fragmentos como archivos de memoria para escenas posteriores</li>
+</ul>
+<p><a href="./../../../wp-content/uploads/2015/01/planta_proyecciones.png"><img decoding="async" class="alignnone wp-image-854 size-full" src="./../../../wp-content/uploads/2015/01/planta_proyecciones.png" alt="planta_proyecciones" width="1540" height="1110" srcset="./../../../wp-content/uploads/2015/01/planta_proyecciones.png 1540w, ./../../../wp-content/uploads/2015/01/planta_proyecciones-300x216.png 300w, ./../../../wp-content/uploads/2015/01/planta_proyecciones-1024x738.png 1024w" sizes="(max-width: 1540px) 100vw, 1540px" /></a></p>
+<p style="text-align: justify;"><span style="color: #ff33b1;"><strong>of2: interfaz: </strong></span>de análisis que ofrece una representación de lo que el ordenador ve como feedback para la exploración. Aplicación que analiza una fuente de video para producir información sobre el movimiento del performer que será enviada vía OSC o7y Json y que muestra una representación visual de dicho proceso de análisis.</p>
+<p style="text-align: justify;"><span style="color: #ff33b1;"><strong>of3: narrativa: </strong></span>resultante del análisis del movimiento del performer que muestra fragmentos de vídeo de distintas fuentes modificados en tiempo real. Aplicación que recibe datos procedentes del interfaz de análisis o del sistema de streaming para mezclar y transformar fuentes de vídeo e imagen como pequeños clips asociados a cada carta o fragmentos de sus imágenes.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../set-up-de-proyecciones/feed/index.html</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

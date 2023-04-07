@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>partners &#8211; herm3TICa</title>
+	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
+	<link>./../../../index.html</link>
+	<description>Cámaras, sensores y telepresencia</description>
+	<lastBuildDate>Mon, 09 Feb 2015 21:57:35 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2</generator>
+	<item>
+		<title>Locales asociados al proyecto</title>
+		<link>./../../../locales-asociados-al-proyecto/index.html</link>
+					<comments>./../../../locales-asociados-al-proyecto/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[man2hauser]]></dc:creator>
+		<pubDate>Mon, 19 Jan 2015 17:16:50 +0000</pubDate>
+				<category><![CDATA[partners]]></category>
+		<category><![CDATA[streaming]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=902</guid>
+
+					<description><![CDATA[Acordes con el nuevo espacio digital de creación ante el que estamos en los últimos tiempos, el proyecto se vuelca en este medio realizando difusión abierta de los contenidos del proyecto mediante streaming que harán referencia tanto a charlas, presentaciones y mesas redondas previas, como a los propios procesos y resultados creativos, en un nuevo [...]]]></description>
+										<content:encoded><![CDATA[<p class="p1" style="text-align: justify;"><span class="s1">Acordes con el nuevo espacio digital de creación ante el que estamos en los últimos tiempos, el proyecto se vuelca en este medio realizando difusión abierta de los contenidos del proyecto mediante streaming que harán referencia tanto a charlas, presentaciones y mesas redondas previas, como a los propios procesos y resultados creativos, en un nuevo espacio virtual compartido, dando lugar a lo que denominamos “telepresencia”. Sin embargo, no todas las relaciones humanas, sociales, cognitivas, suceden, evidentemente, en la red, y no sólo eso, sino que es ineludible afrontar el valor social (entre otros) del espacio físico. </span></p>
+<p class="p1" style="text-align: justify;"><span class="s1">Para tratar de compensar esto, y no sólo, puesto que también como una derivación natural del espacio en red y telecompartido, convocamos la retransmisión de contenidos en espacios físicos de varias ciudades, gracias a la colaboración en el proyecto de entidades públicas y privadas que abren sus puertas a la retransmisión del proceso creativo (performance) de herm3TICa. Estos locales, desde donde podrás observar y participar en el directo emitido son:</span></p>
+<ul>
+<li class="p1"><span class="s1"><a href="www.cgac.org"><strong>CGAC</strong></a> Santiago de Compostela</span></li>
+<li class="p1"><a href="http://www.anavedevidan.com/"><strong>A Nave de Vidán</strong> </a>Santiago de Compostela</li>
+<li class="p1"><a href="http://cafecasino.es/"><strong>Café Casino</strong></a> Santiago de Compostela</li>
+<li class="p1"><a href="www.kunsthalle.es"><strong>Kunsthalle</strong></a> Santiago de Compostela</li>
+<li class="p1"><a href="www.serralves.pt"><strong>Fundación Serralves</strong> </a>Portugal</li>
+<li class="p1"><strong><a href="www.espacionido.es">Espacio Nido</a></strong> Vigo</li>
+</ul>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../locales-asociados-al-proyecto/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Seminario &#8211; herm3TICa</title>
+	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
+	<link>./../../../index.html</link>
+	<description>Cámaras, sensores y telepresencia</description>
+	<lastBuildDate>Thu, 06 Sep 2018 16:54:53 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2</generator>
+	<item>
+		<title>herm3TICa-tv en SiGradi 2018</title>
+		<link>./../../../herm3tica-tv-en-sigradi-2018/index.html</link>
+					<comments>./../../../herm3tica-tv-en-sigradi-2018/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[man2hauser]]></dc:creator>
+		<pubDate>Thu, 06 Sep 2018 16:54:53 +0000</pubDate>
+				<category><![CDATA[Investigación]]></category>
+		<category><![CDATA[Seminario]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=10877</guid>
+
+					<description><![CDATA[Participamos en la XXII CONFERENCIA INTERNACIONAL DE LA SOCIEDAD IBEROAMERICANA DE GRÁFICA DIGITAL que se celebrará en la Universidade de São Paulo. São Carlos. Brasil. del 7 al 9 de noviembre de 2018 bajo el título &#8220;Tecnopolíticas&#8221;. Manuel Cebral leerá su artículo &#8220;herm3TICa-tv&#8221; en la sesión temática dedicada &#8220;Industrias creativas y prácticas artísticas&#8221;.]]></description>
+										<content:encoded><![CDATA[<p>Participamos en la <a href="http://www.sigradi2018.iau.usp.br/?lang=es">XXII CONFERENCIA INTERNACIONAL DE LA SOCIEDAD IBEROAMERICANA DE GRÁFICA DIGITAL </a>que se celebrará en la Universidade de São Paulo. São Carlos. Brasil. del 7 al 9 de noviembre de 2018 bajo el título &#8220;Tecnopolíticas&#8221;. <a href="http://man.herm3tica.tv/">Manuel Cebral</a> leerá su artículo &#8220;<em>herm3TICa-tv</em>&#8221; en la sesión temática dedicada &#8220;<b>Industrias creativas y prácticas artísticas&#8221;.</b></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../herm3tica-tv-en-sigradi-2018/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Ya está online el Seminario &#8220;Artes escénicas y Visuales y TIC&#8217;s: el espacio telepresencial&#8221;</title>
+		<link>./../../../ya-esta-online-el-seminario-artes-escenicas-y-visuales-y-tics-el-espacio-telepresencial/index.html</link>
+					<comments>./../../../ya-esta-online-el-seminario-artes-escenicas-y-visuales-y-tics-el-espacio-telepresencial/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[man2hauser]]></dc:creator>
+		<pubDate>Sun, 01 Mar 2015 11:32:41 +0000</pubDate>
+				<category><![CDATA[Evaluación]]></category>
+		<category><![CDATA[Santiago de Compostela]]></category>
+		<category><![CDATA[Seminario]]></category>
+		<category><![CDATA[streaming]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=1257</guid>
+
+					<description><![CDATA[]]></description>
+										<content:encoded><![CDATA[]]></content:encoded>
+					
+					<wfw:commentRss>./../../../ya-esta-online-el-seminario-artes-escenicas-y-visuales-y-tics-el-espacio-telepresencial/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

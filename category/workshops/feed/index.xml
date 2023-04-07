@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Workshops &#8211; herm3TICa</title>
+	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
+	<link>./../../../index.html</link>
+	<description>Cámaras, sensores y telepresencia</description>
+	<lastBuildDate>Thu, 14 May 2015 07:57:00 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2</generator>
+	<item>
+		<title>C4MARA BL4NCA Instalación y Workshop en Normal. Centro de Intervención Cultural</title>
+		<link>./../../../c4mara-bl4nca-workshop-en-normal/index.html</link>
+					<comments>./../../../c4mara-bl4nca-workshop-en-normal/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[man2hauser]]></dc:creator>
+		<pubDate>Thu, 07 May 2015 15:06:09 +0000</pubDate>
+				<category><![CDATA[Workshops]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=1489</guid>
+
+					<description><![CDATA[La cámara obscura es uno de los dispositivos ancestrales que condujeron al desarrollo da fotografía. Consiste en una caja cerrada y un pequeño agujero por el que entra una mínima cantidad de luz que proyecta en la pared opuesta la imagen del exterior. Quizás su precursor fue el matemático árabe Alhacén, poco antes del año [...]]]></description>
+										<content:encoded><![CDATA[<p style="text-align: justify;"><em>La cámara obscura es uno de los dispositivos ancestrales que condujeron al desarrollo da fotografía. Consiste en una caja cerrada y un pequeño agujero por el que entra una mínima cantidad de luz que proyecta en la pared opuesta la imagen del exterior. Quizás su precursor fue el matemático árabe Alhacén, poco antes del año mil, pero serían Kepler primero y después Da Vinci quienes las populizarían en Europa.</em></p>
+<p style="text-align: justify;">Lo que proponemos con <a href="http://c4marabl4nca.herm3tica.tv/"><strong>C4MARA BL4NCA</strong></a> es una reinvención de este dispositivo en el espacio digital: cómo se adaptaría? qué significaría? qué respuesta tiene un medio tan interactivo como el digital ante este fenómeno? Siguiendo la línea de investigación abierta con “<a href="./../../../index.html"><em>herm3TICa: cámaras, sensores y telepresencia</em></a>” recogemos pautas generadas en la “<em>cabina adivinatoria del tarot</em>” aplicándolas ahora en un espacio de experimentación abstraído: el motivo de la cámara obscura o caja mágica de l@s alquimistas.</p>
+<p style="text-align: justify;"><a href="./../../../wp-content/uploads/2015/05/FLIERC4MARABL4NCA.jpeg"><img decoding="async" class="alignnone wp-image-1499 size-large" src="./../../../wp-content/uploads/2015/05/FLIERC4MARABL4NCA-1024x610.jpeg" alt="" width="1024" height="610" srcset="./../../../wp-content/uploads/2015/05/FLIERC4MARABL4NCA-1024x610.jpeg 1024w, ./../../../wp-content/uploads/2015/05/FLIERC4MARABL4NCA-300x178.jpeg 300w, ./../../../wp-content/uploads/2015/05/FLIERC4MARABL4NCA.jpeg 1813w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p style="text-align: justify;">Con ello, continuamos nuestra búsqueda de las conexiones entre alquimia y tecnología(s) de la información y la comunicación, bajo el paraguas de lo que llamamos herm3TICa: ¿no busca la magia la reinvención del nexo supuestamente necesario causa – efecto? ¿No es una forma de disociar causas – efectos, situándonos en su intersticio, abriendo su fisura y reciclando siempre la información del proceso para nuevas pautas y patrones generativos?</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../c4mara-bl4nca-workshop-en-normal/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Workshop GAmuza online!</title>
+		<link>./../../../workshop-gamuza-online/index.html</link>
+					<comments>./../../../workshop-gamuza-online/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[man2hauser]]></dc:creator>
+		<pubDate>Thu, 18 Dec 2014 11:57:04 +0000</pubDate>
+				<category><![CDATA[GAmuza]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[Workshops]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=751</guid>
+
+					<description><![CDATA[]]></description>
+										<content:encoded><![CDATA[]]></content:encoded>
+					
+					<wfw:commentRss>./../../../workshop-gamuza-online/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Masterclass openFrameworks</title>
+		<link>./../../../masterclass-openframeworks/index.html</link>
+					<comments>./../../../masterclass-openframeworks/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[man2hauser]]></dc:creator>
+		<pubDate>Wed, 01 Oct 2014 18:02:03 +0000</pubDate>
+				<category><![CDATA[Workshops]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=24</guid>
+
+					<description><![CDATA[]]></description>
+										<content:encoded><![CDATA[]]></content:encoded>
+					
+					<wfw:commentRss>./../../../masterclass-openframeworks/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

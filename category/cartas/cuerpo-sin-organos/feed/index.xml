@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Cuerpo sin órganos &#8211; herm3TICa</title>
+	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
+	<link>./../../../../index.html</link>
+	<description>Cámaras, sensores y telepresencia</description>
+	<lastBuildDate>Thu, 05 Feb 2015 23:03:22 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2</generator>
+	<item>
+		<title>La sacerdotisa (centro de gravedad)</title>
+		<link>./../../../../la-sacerdotisa-centro-gravedad/index.html</link>
+					<comments>./../../../../la-sacerdotisa-centro-gravedad/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[Horacio]]></dc:creator>
+		<pubDate>Thu, 05 Feb 2015 22:26:53 +0000</pubDate>
+				<category><![CDATA[Cartas]]></category>
+		<category><![CDATA[code]]></category>
+		<category><![CDATA[Cuerpo sin órganos]]></category>
+		<category><![CDATA[Investigación]]></category>
+		<category><![CDATA[OpenFrameworks]]></category>
+		<category><![CDATA[Previos]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[análisis]]></category>
+		<category><![CDATA[centro de gravedad]]></category>
+		<category><![CDATA[forma]]></category>
+		<category><![CDATA[fundamentos]]></category>
+		<category><![CDATA[pixeles]]></category>
+		<category><![CDATA[posición]]></category>
+		<category><![CDATA[vectores]]></category>
+		<guid isPermaLink="false">./../../../../index.html?p=1083</guid>
+
+					<description><![CDATA[Una vez separada la figura del fondo, recortado todo lo que hemos considerado relevante y eliminadas aquellas partes que hemos determinado como superfluas, ¿Cómo podemos realizar un primer análisis? ¿Cómo podemos empezar a entender la imagen del mismo modo en que lo hace el ordenador y trabajar con una amalgama de pixeles ordenados uno detrás [...]]]></description>
+										<content:encoded><![CDATA[<p style="text-align: justify;"><span style="color: #4c4c4c;">Una vez separada la figura del fondo, recortado todo lo que hemos considerado relevante y eliminadas aquellas partes que hemos determinado como superfluas, ¿Cómo podemos realizar un primer análisis? ¿Cómo podemos empezar a entender la imagen del mismo modo en que lo hace el ordenador y trabajar con una amalgama de pixeles ordenados uno detrás de otro? ¿Cómo extraer de dicha amalgama propiedades que nos hablen de un cuerpo en el espacio? </span></p>
+<p><a href="./../../../../wp-content/uploads/2015/02/centro-de-gravedad-01.png"><img decoding="async" class="alignnone wp-image-1085 size-full" src="./../../../../wp-content/uploads/2015/02/centro-de-gravedad-01.png" alt="centro-de-gravedad-01" width="948" height="495" srcset="./../../../../wp-content/uploads/2015/02/centro-de-gravedad-01.png 948w, ./../../../../wp-content/uploads/2015/02/centro-de-gravedad-01-300x156.png 300w" sizes="(max-width: 948px) 100vw, 948px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Entendamos la imagen como un todo, como un cuerpo sin órganos, un continuum de cualidades intensivas (la luminosidad de cada pixel). Si asignamos un peso a cada pixel en función de su luminosidad y averiguamos donde está situado en la imagen, podremos calcular el centro de gravedad de dicho cuerpo, la zona de la imagen donde se acumula la masa, y empezar a comprender un poco más la amalgama informe.</span></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">No necesitamos detalles para hacer un análisis tan sencillo, así que con el fin de simplificar el trabajo y facilitar los cálculos al ordenador podemos trabajar con una imagen de muy baja resolución, 18&#215;9 pixeles bastan para conseguir buenos resultados.</span></p>
+<p><a href="./../../../../wp-content/uploads/2015/02/centro-de-gravedad_02.png"><img decoding="async" class="alignnone wp-image-1084 size-full" src="./../../../../wp-content/uploads/2015/02/centro-de-gravedad_02.png" alt="centro-de-gravedad_02" width="947" height="591" srcset="./../../../../wp-content/uploads/2015/02/centro-de-gravedad_02.png 947w, ./../../../../wp-content/uploads/2015/02/centro-de-gravedad_02-300x187.png 300w" sizes="(max-width: 947px) 100vw, 947px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Para cada pixel</span><span style="color: #4c4c4c;"> crearemos un vector en el que guardar la posición X e Y que le corresponden en la imagen.</span></p>
+<pre style="font-size: .8em;">int total = 18 * 9;
+vector&lt;ofVec2f&gt; vectores;
+
+for (int i=0; i&lt;total; i++) {
+	int x = i % 18;
+	int y = (i - x) / 18;
+	vectores.push_back(ofVec2f(x, y));
+}
+</pre>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Recorriendo todos los pixeles de la imagen podremos utilizar el valor en escala de grises de sus colores y dividirlo entre 255 para obtener una cifra entre 0 y 1 que consideraremos su peso específico. De este modo los pixeles claros con luminosidades cercanas a 255 tendrán pesos cercanos a 1 y los pixeles oscuros tendrán pesos cercanos a 0, dichos pesos nos permitirán promediar la suma de los vectores de posición de todos los pixeles.</span></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;"><a href="./../../../../wp-content/uploads/2015/02/centro-de-gravedad-04.png"><img decoding="async" class="alignnone size-medium wp-image-1103" src="./../../../../wp-content/uploads/2015/02/centro-de-gravedad-04-300x93.png" alt="centro-de-gravedad-04" width="300" height="93" srcset="./../../../../wp-content/uploads/2015/02/centro-de-gravedad-04-300x93.png 300w, ./../../../../wp-content/uploads/2015/02/centro-de-gravedad-04.png 786w" sizes="(max-width: 300px) 100vw, 300px" /></a></span></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">El cálculo resulta sencillo, simplemente debemos multiplicar cada vector de posición por el peso específico del pixel que le corresponde antes de sumarlos, y, al final, dividir el resultado entre la suma de los pesos de cada pixel. Obteniendo como resultado una posición promediada por los pesos de los pixeles, que consideraremos el centro de gravedad de la imagen.</span></p>
+<pre style="font-size: .8em;">vector vectores;
+unsigned char * pixeles;
+
+int total = 18 * 9;
+ofVec2f vector_promedio(0, 0);
+float peso_promedio = 0;
+
+for (int i=0; i&lt;size; i++) {
+	/* la posición es distinta en el array de vectores que en la imagen
+	porque por cada pixel se almacenan tres valores r, g y b */
+	int posicion = vectores[i].y * 3 + vectores[i].x * 3;  
+	float gris = 0.2126 * pixeles[posicion] + 0.7152 * pixeles[posicion+1] + 0.0722 * pixeles[posicion+2];
+	float peso = gris/255.0;
+	vector_promedio += vectores[i] * peso;
+	peso_promedio += peso;
+}
+
+vector_promedio /= peso_promedio;
+</pre>
+<p><a href="./../../../../wp-content/uploads/2015/02/centro-de-gravedad_03.png"><img decoding="async" class="alignnone wp-image-1089 size-full" src="./../../../../wp-content/uploads/2015/02/centro-de-gravedad_03.png" alt="centro-de-gravedad_03" width="1280" height="690" srcset="./../../../../wp-content/uploads/2015/02/centro-de-gravedad_03.png 1280w, ./../../../../wp-content/uploads/2015/02/centro-de-gravedad_03-300x161.png 300w, ./../../../../wp-content/uploads/2015/02/centro-de-gravedad_03-1024x552.png 1024w" sizes="(max-width: 1280px) 100vw, 1280px" /></a></p>
+<p><a title="Of2 - Github Alg-a" href="https://github.com/alg-a/herm3TICa/tree/master/of2" target="_blank">https://github.com/alg-a/herm3TICa/tree/master/of2</a></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../../la-sacerdotisa-centro-gravedad/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>La sacerdotisa (background subtraction)</title>
+		<link>./../../../../la-sacerdotisa-background-subtraction/index.html</link>
+					<comments>./../../../../la-sacerdotisa-background-subtraction/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[Horacio]]></dc:creator>
+		<pubDate>Sun, 25 Jan 2015 16:01:19 +0000</pubDate>
+				<category><![CDATA[code]]></category>
+		<category><![CDATA[Cuerpo sin órganos]]></category>
+		<category><![CDATA[interactivos]]></category>
+		<category><![CDATA[OpenFrameworks]]></category>
+		<category><![CDATA[Previos]]></category>
+		<category><![CDATA[setup]]></category>
+		<category><![CDATA[Sin categoría]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[análisis]]></category>
+		<category><![CDATA[background subtraction]]></category>
+		<category><![CDATA[captura]]></category>
+		<category><![CDATA[fundamentos]]></category>
+		<guid isPermaLink="false">./../../../../index.html?p=924</guid>
+
+					<description><![CDATA[Dos columnas con las letras B y J grabadas a los laterales de la suma sacerdotisa, abren en el Tarot de Rider un interrogante y, a su vez, nos ofrecen algunas respuestas. ¿Por que somos capaces de reconocer a la sacerdotisa camuflada delante de un fondo tropical, complejo y exuberante, o de separar el huevo [...]]]></description>
+										<content:encoded><![CDATA[<p><a href="./../../../../wp-content/uploads/2015/01/background-subtraction.png"><img decoding="async" class="alignnone wp-image-926 size-full" src="./../../../../wp-content/uploads/2015/01/background-subtraction.png" alt="background-subtraction" width="640" height="541" srcset="./../../../../wp-content/uploads/2015/01/background-subtraction.png 640w, ./../../../../wp-content/uploads/2015/01/background-subtraction-300x253.png 300w" sizes="(max-width: 640px) 100vw, 640px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Dos columnas con las letras B y J grabadas a los laterales de la suma sacerdotisa, abren en el Tarot de Rider un interrogante y, a su vez, nos ofrecen algunas respuestas. ¿Por que somos capaces de reconocer a la sacerdotisa camuflada delante de un fondo tropical, complejo y exuberante, o de separar el huevo cósmico de la sacerdotisa con nuestra mirada? ¿Como identificamos y separamos los objetos del fondo al que pertenecen?</span></p>
+<p style="text-align: justify;"><a href="./../../../../wp-content/uploads/2015/01/02-sacerdotisa.jpeg"><img decoding="async" class="alignnone wp-image-771" src="./../../../../wp-content/uploads/2015/01/02-sacerdotisa.jpeg" alt="02-sacerdotisa" width="450" height="784" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Ambas columnas plantean a la vista una versión muy simplificada del problema; la columna negra de la izquierda ejerce como fondo oscuro que resalta una letra B dibujada en blanco, mientras que la columna blanca de la derecha ejerce como fondo claro que resalta una letra J dibujada en negro. Los valores de los pixeles de cada letra son opuestos, su valor intrínseco no es el que aporta información acerca de la composición de la imagen, sino su relación con los valores de los pixeles que están alrededor, se trata por lo tanto de un problema de detección de la continuidad y la diferencia, no de detección del color de una determinada zona como se planteó en el ejercicio 00.</span></p>
+<div style="width: 100%; height: 320px;"><a href="./../../../../wp-content/uploads/2015/01/02-sacerdotisa-j.png"><img decoding="async" class="alignright wp-image-928 size-medium" src="./../../../../wp-content/uploads/2015/01/02-sacerdotisa-j-200x300.png" alt="02-sacerdotisa-j" width="200" height="300" srcset="./../../../../wp-content/uploads/2015/01/02-sacerdotisa-j-200x300.png 200w, ./../../../../wp-content/uploads/2015/01/02-sacerdotisa-j.png 300w" sizes="(max-width: 200px) 100vw, 200px" /></a><a href="./../../../../wp-content/uploads/2015/01/02-sacerdotisa-b.png"><img decoding="async" class="alignleft wp-image-927 size-medium" src="./../../../../wp-content/uploads/2015/01/02-sacerdotisa-b-200x300.png" alt="02-sacerdotisa-b" width="200" height="300" srcset="./../../../../wp-content/uploads/2015/01/02-sacerdotisa-b-200x300.png 200w, ./../../../../wp-content/uploads/2015/01/02-sacerdotisa-b.png 300w" sizes="(max-width: 200px) 100vw, 200px" /></a></div>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">La primera y mas elemental diferencia que podemos utilizar para interpretar una imagen, solamente podemos imaginarla en el Tarot, ya que las cartas son estáticas y nos muestran a cada personaje en un momento determinado. Se trata de la diferencia que se produce a lo largo del tiempo, entre un fotograma y el siguiente, cuando una cámara esta fija; la diferencia entre aquellos elementos que permanecen iguales a lo largo del tiempo y aquellos que cambian. Los objetos que nos interesan, por lo general, tienden estar en movimiento, mientras que el fondo y los objetos que non nos interesan suelen estar fijos. Midiendo la diferencia entre el valor de cada pixel, respecto al valor de su pixel correspondiente en una imagen de referencia tomada con anterioridad, podemos obtener una medida del cambio que se halla producido.<br />
+</span></p>
+<p><a href="./../../../../wp-content/uploads/2015/01/background-sustraction.png"><img decoding="async" class="alignnone wp-image-929 size-large" src="./../../../../wp-content/uploads/2015/01/background-sustraction-1024x460.png" alt="background-sustraction" width="1024" height="460" srcset="./../../../../wp-content/uploads/2015/01/background-sustraction-1024x460.png 1024w, ./../../../../wp-content/uploads/2015/01/background-sustraction-300x134.png 300w, ./../../../../wp-content/uploads/2015/01/background-sustraction.png 1668w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p><span style="color: #4c4c4c;">Si pudiéramos comparar cada carta del Tarot con una imagen realizada antes de que su personaje entrase en escena, resultaría enormemente sencillo aislarlos y separarlos del fondo. Esta técnica es conocida precisamente como sustracción de fondo, porque basta con restar la imagen de fondo a la imagen original para obtener el resultado.</span></p>
+<p><a title="backgroundSubtraction - Github Alg-a" href="https://github.com/alg-a/herm3TICa/tree/master/exploracion%20pruebas%20y%20juegos/backgroundSubtraction" target="_blank">https://github.com/alg-a/herm3TICa/tree/master/exploracion pruebas y juegos/backgroundSubtraction</a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">Volvamos al reto que nos proponen la B y la J en la carta de la sacerdotisa. Imaginemos sus respectivos fondos, ¿que sucederá cuando se los restemos a la imagen? Es relativamente sencillo imaginar lo que sucederá con la letra B, los tonos del fondo de esta letra son muy oscuros y sus valores se aproximarán bastante al 0, por lo que al restar valores cercanos al 0 a todos los pixeles de la imagen el resultado prácticamente no variará nada. Sin embargo la J tiene un fondo de tonos muy claros cuyos valores tenderán a aproximarse a 255, por lo que cuando restemos valores cercanos a 255 a todos los pixeles de la imagen obtendremos un valor cercano al 0 en los pixeles que sean muy claros y distintos valores negativos para todos los demás pixeles. </span></p>
+<p style="text-align: justify;"><a href="./../../../../wp-content/uploads/2015/01/background-sustraction-2-b.png"><img decoding="async" class="alignnone wp-image-1075 size-full" src="./../../../../wp-content/uploads/2015/01/background-sustraction-2-b.png" alt="background-sustraction-2-b" width="942" height="401" srcset="./../../../../wp-content/uploads/2015/01/background-sustraction-2-b.png 942w, ./../../../../wp-content/uploads/2015/01/background-sustraction-2-b-300x127.png 300w" sizes="(max-width: 942px) 100vw, 942px" /></a> <a href="./../../../../wp-content/uploads/2015/01/background-sustraction-2-j.png"><img decoding="async" class="alignnone wp-image-1076 size-full" src="./../../../../wp-content/uploads/2015/01/background-sustraction-2-j.png" alt="background-sustraction-2-j" width="944" height="401" srcset="./../../../../wp-content/uploads/2015/01/background-sustraction-2-j.png 944w, ./../../../../wp-content/uploads/2015/01/background-sustraction-2-j-300x127.png 300w" sizes="(max-width: 944px) 100vw, 944px" /></a></p>
+<p style="text-align: justify;"><span style="color: #4c4c4c;">¿Puede un pixel tener valores negativos? Nó, el resultado será una imagen negra o alguna sorpresa divertida si nuestro programa decide volver a contar desde 255 y restar a partir de ahí dicho valor negativo. Para hacer la sustracción de fondo necesitamos asignar un valor positivo a la diferencia entre la imagen y el fondo, por eso después de hacer la resta deberemos calcular su valor absoluto.</span></p>
+<p style="text-align: justify;"><a href="./../../../../wp-content/uploads/2015/01/background-sustraction1.png"><img decoding="async" class="alignnone wp-image-1077 size-medium" src="./../../../../wp-content/uploads/2015/01/background-sustraction1-300x111.png" alt="background-sustraction" width="300" height="111" srcset="./../../../../wp-content/uploads/2015/01/background-sustraction1-300x111.png 300w, ./../../../../wp-content/uploads/2015/01/background-sustraction1.png 751w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><a href="./../../../../wp-content/uploads/2015/01/02-sacerdotisa-j-dif.png"><img decoding="async" class="alignnone wp-image-1078 size-medium" src="./../../../../wp-content/uploads/2015/01/02-sacerdotisa-j-dif-200x300.png" alt="02-sacerdotisa-j-dif" width="200" height="300" srcset="./../../../../wp-content/uploads/2015/01/02-sacerdotisa-j-dif-200x300.png 200w, ./../../../../wp-content/uploads/2015/01/02-sacerdotisa-j-dif.png 300w" sizes="(max-width: 200px) 100vw, 200px" /></a></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../../la-sacerdotisa-background-subtraction/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

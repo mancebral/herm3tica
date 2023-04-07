@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Imaginarios &#8211; herm3TICa</title>
+	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
+	<link>./../../../index.html</link>
+	<description>Cámaras, sensores y telepresencia</description>
+	<lastBuildDate>Sun, 08 Feb 2015 17:16:28 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2</generator>
+	<item>
+		<title>Un viaje irreversible</title>
+		<link>./../../../un-viaje-irreversible/index.html</link>
+					<comments>./../../../un-viaje-irreversible/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[man2hauser]]></dc:creator>
+		<pubDate>Fri, 28 Nov 2014 22:10:08 +0000</pubDate>
+				<category><![CDATA[Caosmos]]></category>
+		<category><![CDATA[Imaginarios]]></category>
+		<category><![CDATA[Previos]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=653</guid>
+
+					<description><![CDATA[El tar0t no es tanto una ciencia adivinatoria, sino más un viaje al interior de un@ mism@ y al interior del tiempo; y su relación con los demás, con el mundo, con nuestra líbido y nuestra energía creativa. Es como veremos un viaje irreversible, en el que los pasos y las decisiones tomadas en cada [...]]]></description>
+										<content:encoded><![CDATA[<p>El tar0t no es tanto una ciencia adivinatoria, sino más un viaje al interior de un@ mism@ y al interior del tiempo; y su relación con los demás, con el mundo, con nuestra líbido y nuestra energía creativa. Es como veremos un viaje irreversible, en el que los pasos y las decisiones tomadas en cada momento determinan las posibilidades futuras; pero más que como un límite, deberíamos verlo como un posibilitador de experiencias. A continuación Jodorowsky, especialista en el tema, nos explica su experiencia.</p>
+<p><iframe width="560" height="315" src="//www.youtube.com/embed/YXg1RaaMKho" frameborder="0" allowfullscreen></iframe></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../un-viaje-irreversible/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Cielo y Tierra</title>
+		<link>./../../../cielo-y-tierra/index.html</link>
+					<comments>./../../../cielo-y-tierra/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[man2hauser]]></dc:creator>
+		<pubDate>Wed, 26 Nov 2014 14:39:26 +0000</pubDate>
+				<category><![CDATA[Alfombra de Sierpinski]]></category>
+		<category><![CDATA[Imaginarios]]></category>
+		<category><![CDATA[Investigación]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=576</guid>
+
+					<description><![CDATA[Las cartas del Tar0t sabemos que tienen una figura rectangular. En concreto, hacen dos cuadrados, uno puesto encima del otro, de tal modo, que podemos dividir, cada carta, cada escena, en esos dos cuadrantes, en los que pasa algo ligeramente diferente y/o complementario. Nos adentramos así en una de las muchas pautas implícitas que contiene [...]]]></description>
+										<content:encoded><![CDATA[<p align="justify">Las cartas del Tar0t sabemos que tienen una figura rectangular. En concreto, hacen dos cuadrados, uno puesto encima del otro, de tal modo, que podemos dividir, cada carta, cada escena, en esos dos cuadrantes, en los que pasa algo ligeramente diferente y/o complementario. Nos adentramos así en una de las muchas pautas implícitas que contiene la baraja. Pautas que atraviesan el viaje, que nos dan las claves de cada paso en los que como un algoritmo, hay una razón implícita que los conecta y relaciona. Siempre son sutiles, son pequeños signos de los que están plagadas, finalmente, las cartas. Estas dos partes son el Cielo y la Tierra; lo material y lo espiritual. Como dos ámbitos complementarios.</p>
+<p align="center"><a href="./../../../wp-content/uploads/2014/11/alfombraarriba.png"><img decoding="async" wp-image-580 size-thumbnail" src="./../../../wp-content/uploads/2014/11/alfombraarriba-150x150.png" alt="PageLines-alfombraarriba.png" width="150" height="150" /></a> <a href="./../../../wp-content/uploads/2014/11/alfombrabajo.png"><img decoding="async" wp-image-581 size-thumbnail" src="./../../../wp-content/uploads/2014/11/alfombrabajo-150x150.png" alt="PageLines-alfombrabajo.png" width="150" height="150"/></a></p>
+<p align="justify">De este modo, podemos &#8220;cartografiar&#8221; acciones que suceden en el espacio físico del laboratorio, con puntos situados en la imagen del arcano; y viceversa. Y lo hacemos a través de la <a title="Alfombra de Sierpinski" href="./../../../alfombra-de-sierpinski/index.html">Alfombra de Sierpinski</a>. Que la alfombra sea un cuadrado, nos obliga a tratar cada sección por separado, pero por otro lado, al tener infinitas dimensiones, podemos superponer los espacios, como capas que interaccionan, dándole así un sentido bastante fiel a la complementariedad de los elementos en el tar0t original. La alfombra será al mismo tiempo cielo y tierra; como dos espacios en una, del mismo modo que el fractal contiene en sí lo diverso en la lógica de una misma matriz. Ajustar cada elemento del suelo con cada elemento de la imagen, mantener una proporción de relaciones entre ellos tal como se dan en la imagen, y finalmente soltar, mediante sensores y actuadores, el control de lo que ahí pasa, es lo que iremos definiendo.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../cielo-y-tierra/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>blog &#8211; herm3TICa</title>
+	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
+	<link>./../../../index.html</link>
+	<description>Cámaras, sensores y telepresencia</description>
+	<lastBuildDate>Wed, 14 Nov 2018 14:41:00 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2</generator>
+	<item>
+		<title>herme3TIC-tv. Digital Humanities Lab</title>
+		<link>./../../../herme3tic-tv-digital-humanities-lab/index.html</link>
+					<comments>./../../../herme3tic-tv-digital-humanities-lab/index.html#respond</comments>
+		
+		<dc:creator><![CDATA[man2hauser]]></dc:creator>
+		<pubDate>Wed, 14 Nov 2018 14:38:23 +0000</pubDate>
+				<category><![CDATA[blog]]></category>
+		<guid isPermaLink="false">./../../../index.html?p=10881</guid>
+
+					<description><![CDATA[Manuel Cebral ha presentado el artículo herm3TIC-tv: Prototipo de un laboratorio de ciencias humanas y sociales basado en la filosofía Deleuze-Guattari y la aplicación de las nuevas TIC en la Conferencia Internacional SIGraDi 2018, que trata el tema de &#8220;Tecnopolítica&#8221;, donde propuse un prototipo de Laboratorio de humanidades digitales basado en un enfoque interdisciplinario. El [...]]]></description>
+										<content:encoded><![CDATA[<div class="page" title="Page 1">
+<div class="section">
+<div class="layoutArea">
+<div class="column">
+<p>Manuel Cebral ha presentado el artículo<a href="https://www.proceedings.blucher.com.br/article-details/herm3tic-tv-prototype-of-a-human-and-social-sciences-laboratory-based-on-deleuze-guattari-philosophy-and-the-application-of-the-new-ict-29823"> herm3TIC-tv: Prototipo de un laboratorio de ciencias humanas y sociales</a> basado en la filosofía Deleuze-Guattari y la aplicación de las nuevas TIC en la <a href="http://www.sigradi2018.iau.usp.br/index.php/programa/?lang=en">Conferencia Internacional SIGraDi 2018</a>, que trata el tema de &#8220;Tecnopolítica&#8221;, donde propuse un prototipo de Laboratorio de humanidades digitales basado en un enfoque interdisciplinario. El proyecto forma parte de <a href="./../../../laboratorio-de-esquizoan4lisis/index.html">mi investigación sobre una posible disciplina &#8220;herm3TICa&#8221;</a>, que supere las dificultades humanísticas y hermenéuticas cuando intentan enfrentar nuevas tecnologías de interacción, diseñando un espacio donde las ciencias sociales pueden llegar a la experimentación yendo más allá de la mera documentación. El trabajo refleja experiencias contenidas en este mismo site.</p>
+<p><em><br />
+Nuestras interacciones sociales, mediadas cada vez más por la tecnología, requieren espacios de singularización de las subjetividades. La filosofía de Deleuze-Guattari nos da las claves de un dispositivo maquínico que pueda contra-efectuar los agenciamientos genéricos que padecemos, derivados de los media y la propia tecnología. Se plantea este espacio como un espacio escénico pero también científico y analítico, desarrollando lo que Deleuze-Guattari denominaron clínica de esquizoanálisis pero que también podemos entender como el desarrollo de una metodología propia e interdisciplinar para los nuevos laboratorios de ciencias humanas y sociales.</em></p>
+<p style="text-align: center;"><iframe style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%;" src="//www.slideshare.net/slideshow/embed_code/key/msf9t8TUfUmRbs" width="595" height="385" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen="allowfullscreen"><span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start">﻿</span> </iframe></p>
+<div style="margin-bottom: 5px; text-align: center;"><strong> <a title="herm3TICa-tv. Digital Humanities Lab" href="//www.slideshare.net/ManuelCebral/herm3ticatv-digital-humanities-lab" target="_blank" rel="noopener">herm3TICa-tv. Digital Humanities Lab</a> </strong> from <strong><a href="https://www.slideshare.net/ManuelCebral" target="_blank" rel="noopener">Manuel Cebral</a></strong></div>
+</div>
+</div>
+</div>
+</div>
+]]></content:encoded>
+					
+					<wfw:commentRss>./../../../herme3tic-tv-digital-humanities-lab/feed/index.html</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>
